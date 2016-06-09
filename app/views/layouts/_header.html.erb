@@ -5,7 +5,7 @@
         <li role="presentation"><%= link_to 'Home', root_path %></li>
         <% if @user.nil? %>
           <li role="presentation"><%= link_to 'Log In', new_user_session_path %></li>
-        <% else %>
+        <% elsif @user && @user.id != nil %>
           <li role="presentation"><%= link_to 'My Decks', user_xml_files_path(@user) %></h2></li>
           <li role="presentation"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></h2></li>
         <% end %>
