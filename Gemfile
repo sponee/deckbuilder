@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'pry'
 gem 'crack'
 gem 'json'
+gem 'pg'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
