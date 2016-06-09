@@ -1,0 +1,15 @@
+<header id="page-header">
+  <nav class="navbar-right navbar-default navbar-fixed-top">
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li role="presentation"><%= link_to 'Home', root_path %></li>
+        <% if @user.nil? %>
+          <li role="presentation"><%= link_to 'Log In', new_user_session_path %></li>
+        <% else %>
+          <li role="presentation"><%= link_to 'My Decks', user_xml_files_path(@user) %></h2></li>
+          <li role="presentation"><%= link_to 'Log Out', destroy_user_session_url, method: :delete %></h2></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</header>
