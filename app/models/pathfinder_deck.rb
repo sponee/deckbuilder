@@ -8,8 +8,8 @@ class PathfinderDeck < ActiveRecord::Base
   def compile(file, name)
     @file = file
     @name = name
-    Compiler.new(file).prepare_for_s3
+    @content = Compiler.new(file).prepare_for_s3
 
-    self.update_attributes!(document_path: "public/downloads/deck/attachment/1/#{@name}.json", name: @name)
+    self.update_attributes!(contents: @content, name: @name)
   end
 end

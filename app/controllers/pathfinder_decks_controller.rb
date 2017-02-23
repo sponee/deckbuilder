@@ -3,7 +3,7 @@ class PathfinderDecksController < ApplicationController
   before_action :set_deck, except: [:create, :destroy]
 
   def download 
-    send_file(@deck.document_path) 
+    send_data(@deck.contents) 
   end
 
   def create
