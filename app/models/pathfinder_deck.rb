@@ -1,4 +1,4 @@
-class Deck < ActiveRecord::Base
+class PathfinderDeck < ActiveRecord::Base
 
   attr_accessor :cards
   attr_accessor :xml_file

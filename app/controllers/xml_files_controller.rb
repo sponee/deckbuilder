@@ -4,7 +4,7 @@ class XmlFilesController < ApplicationController
    def index
       @user = current_user
       @xml_files = @user.xml_files
-      @decks = @user.decks
+      @decks = @user.pathfinder_decks
    end
    
    def new

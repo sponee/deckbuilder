@@ -1,4 +1,4 @@
-class DecksController < ApplicationController
+class PathfinderDecksController < ApplicationController
 
   before_action :set_deck, except: [:create, :destroy]
 
@@ -9,7 +9,7 @@ class DecksController < ApplicationController
   def create
     @user = User.find(current_user)
     @xml_file = @user.xml_files.find(params[:format])
-    @deck = @user.decks.new
+    @deck = @user.pathfinder_decks.new
 
     @deck.compile_individual(@xml_file.attachment.file.file)
     
@@ -22,7 +22,7 @@ class DecksController < ApplicationController
 
   def destroy
     @user = User.find(current_user)
-    @deck = Deck.find(params[:id])
+    @deck = PathfinderDeck.find(params[:id])
     @deck.destroy
     redirect_to user_xml_files_path, notice:  "The deck has been deleted."
   end
@@ -30,6 +30,6 @@ class DecksController < ApplicationController
   private
 
   def set_deck
-    @deck = Deck.find(params[:deck_id]) 
+    @deck = PathfinderDeck.find(params[:deck_id]) 
   end 
 end
