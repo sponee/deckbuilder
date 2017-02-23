@@ -11,7 +11,9 @@ class PathfinderDecksController < ApplicationController
     @xml_file = @user.xml_files.find(params[:format])
     @deck = @user.pathfinder_decks.new
 
-    @deck.compile_individual(@xml_file.attachment.file.file)
+    byebug
+
+    @deck.compile(@xml_file.attachment.file.file, params[:name])
     
     if @deck.save
        redirect_to user_xml_files_path, notice: "The deck has been created."
@@ -30,6 +32,6 @@ class PathfinderDecksController < ApplicationController
   private
 
   def set_deck
-    @deck = PathfinderDeck.find(params[:deck_id]) 
+    @deck = PathfinderDeck.find(params[:pathfinder_deck_id]) 
   end 
 end

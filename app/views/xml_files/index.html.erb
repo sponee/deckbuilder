@@ -19,14 +19,14 @@
          <th> </th>
       </tr>
    </thead>
-   
+
    <tbody>
       <% @xml_files.each do |xml_file| %>
          
          <tr>
             <td><%= xml_file.name %></td>
             <td><%= link_to "Download XML File", xml_file.attachment_url %></td>
-            <td><%= button_to "Create Deck", user_pathfinder_decks_path(@user, xml_file.id), method: :post %></td>
+            <td><%= button_to "Create Deck", user_pathfinder_decks_path(@user, xml_file.id, name: xml_file.name), method: :post %></td>
             <td><%= button_to "Delete", user_xml_file_url(@user, xml_file.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{xml_file.name}?" %></td>
          </tr>
          
