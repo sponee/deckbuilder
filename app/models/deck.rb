@@ -6,6 +6,11 @@ class Deck < ActiveRecord::Base
   belongs_to :user
 
   def compile(file)
-    Compiler.new(file).compile
+    @file = file
+    if self.is_party?(@file)
+      self.compile_party(@file)
+    else
+      self.compile_individual(@file)
+    end
   end
 end
