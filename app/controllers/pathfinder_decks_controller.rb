@@ -11,8 +11,6 @@ class PathfinderDecksController < ApplicationController
     @xml_file = @user.xml_files.find(params[:format])
     @deck = @user.pathfinder_decks.new
 
-    byebug
-
     @deck.compile(@xml_file.attachment.file.file, params[:name])
     
     if @deck.save
