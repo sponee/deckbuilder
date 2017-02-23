@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608033908) do
-
-  create_table "decks", force: :cascade do |t|
-    t.string  "name"
-    t.text    "cards"
-    t.text    "contents"
-    t.integer "user_id"
-    t.string  "document_path"
-    t.string  "xml_file"
-  end
-
-  add_index "decks", ["user_id"], name: "index_decks_on_user_id"
+ActiveRecord::Schema.define(version: 20170223035228) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -33,6 +22,17 @@ ActiveRecord::Schema.define(version: 20160608033908) do
     t.text     "description"
     t.date     "released_on"
   end
+
+  create_table "pathfinder_decks", force: :cascade do |t|
+    t.string  "name"
+    t.text    "cards"
+    t.text    "contents"
+    t.integer "user_id"
+    t.string  "document_path"
+    t.string  "xml_file"
+  end
+
+  add_index "pathfinder_decks", ["user_id"], name: "index_pathfinder_decks_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
