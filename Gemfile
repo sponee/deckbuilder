@@ -6,6 +6,8 @@ gem 'crack'
 gem 'json'
 gem 'pg'
 gem 'pathfinder_deck_builder'
+gem 'fog'
+gem 'figaro'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
