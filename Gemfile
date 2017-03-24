@@ -8,6 +8,7 @@ gem 'pg'
 gem 'pathfinder_deck_builder'
 gem 'fog'
 gem 'figaro'
+gem 'aws-sdk'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
