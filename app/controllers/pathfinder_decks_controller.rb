@@ -1,9 +1,14 @@
 class PathfinderDecksController < ApplicationController
 
   before_action :set_deck, except: [:create, :destroy]
+  before_action :set_s3_client, except: [:create, :destroy]
 
   def download
-    send_data(@deck.contents) 
+    s3 = Aws::S3::Resource.new(region:ENV["REGION"])
+    obj = s3.bucket(ENV["AWS_BUCKET"]).object(params["name"])
+    send_data(obj.get.body.read, disposition: "attachment", filename: params["name"])
+    #redirect_to root_url
+    #s3.bucket(ENV["AWS_BUCKET"]).object(params["name"]).get(response_target: "Desktop")
   end
 
   def create
@@ -31,5 +36,12 @@ class PathfinderDecksController < ApplicationController
 
   def set_deck
     @deck = PathfinderDeck.find(params[:pathfinder_deck_id]) 
+  end
+
+  def set_s3_client
+    Aws.config.update({
+      region: ENV["REGION"],
+      credentials: Aws::Credentials.new(ENV["AWS_ACCESS_KEY"], ENV["AWS_SECRET_KEY"])
+    })
   end
 end

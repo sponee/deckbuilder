@@ -35,7 +35,7 @@
    
 </table>
 
-<table class = "table table-bordered table-striped">
+<table class = "table table-bordered table-striped" data-turbolinks="false">
    <thead>
       <tr>
          <th>Name</th>
@@ -49,7 +49,7 @@
          
          <tr>
             <td><%= "#{deck.name}" %></td>
-            <td><%= link_to "Download Deck", user_pathfinder_deck_download_path(@user, deck.id) %></td>
+            <td><%= link_to "Download Deck", user_pathfinder_deck_download_path(@user, deck.id, name: deck.name, 'data-turbolinks' => false) %></td>
             <td><%= button_to "Delete Deck", user_pathfinder_deck_path(@user, deck.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{deck.name}?" %></td>
          </tr>
          

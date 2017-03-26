@@ -14,7 +14,7 @@ class PathfinderDeck < ActiveRecord::Base
     obj = s3.bucket(ENV["AWS_BUCKET"]).object(name)
     obj.put(body: JSON.pretty_generate(compiler.prepare_for_s3))
 
-    #self.update_attributes!(contents: @content, name: @name)
+    self.update_attributes!(name: name)
   end
 
   def set_s3_client
