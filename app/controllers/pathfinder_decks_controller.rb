@@ -7,8 +7,6 @@ class PathfinderDecksController < ApplicationController
     s3 = Aws::S3::Resource.new(region:ENV["REGION"])
     obj = s3.bucket(ENV["AWS_BUCKET"]).object(params["name"])
     send_data(obj.get.body.read, disposition: "attachment", filename: params["name"])
-    #redirect_to root_url
-    #s3.bucket(ENV["AWS_BUCKET"]).object(params["name"]).get(response_target: "Desktop")
   end
 
   def create
