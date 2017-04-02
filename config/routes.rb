@@ -4,6 +4,7 @@ Flix::Application.routes.draw do
   devise_for :users
   resources :xml_files do get 'download', :user end
   resources :pathfinder_decks do get 'download', :user end
+  resources :charges
   post "xml_files" => "xml_files#create_deck"
   root "welcome#index"
  end

@@ -1,59 +1,61 @@
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
-   </div>
-<% end %>
+<div>
+   <% if !flash[:notice].blank? %>
+      <div class = "alert alert-info">
+         <%= flash[:notice] %>
+      </div>
+   <% end %>
 
-<br />
+   <br />
 
-<%= link_to "New XML File", new_xml_file_path(@user), class: "btn btn-primary" %>
-<br />
-<br />
+   <%= link_to "New XML File", new_xml_file_path(@user), class: "btn btn-primary" %>
+   <br />
+   <br />
 
-<table class = "table table-bordered table-striped" data-turbolinks="false">
-   <thead>
-      <tr>
-         <th>Name</th>
-         <th>Download Link</th>
-         <th> </th>
-         <th> </th>
-      </tr>
-   </thead>
-
-   <tbody>
-      <% @xml_files.each do |xml_file| %>
-         
+   <table class = "table table-bordered table-striped" data-turbolinks="false">
+      <thead>
          <tr>
-            <td><%= xml_file.name %></td>
-            <td><%= link_to "Download XML File", xml_file_download_path(user_id: @user.id, xml_file_id: xml_file.id) %></td>
-            <td><%= button_to "Create Deck", pathfinder_decks_path(@user, xml_file_id: xml_file.id, name: xml_file.name), method: :post %></td>
-            <td><%= button_to "Delete", xml_file_url(@user, xml_file_id: xml_file.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{xml_file.name}?" %></td>
+            <th>Name</th>
+            <th>Download Link</th>
+            <th> </th>
+            <th> </th>
          </tr>
-         
-      <% end %>
-   </tbody>
-   
-</table>
+      </thead>
 
-<table class = "table table-bordered table-striped" data-turbolinks="false">
-   <thead>
-      <tr>
-         <th>Name</th>
-         <th>Download Link</th>
-         <th> </th>
-      </tr>
-   </thead>
-   
-   <tbody>
-      <% @decks.each do |deck| %>
-         
+      <tbody>
+         <% @xml_files.each do |xml_file| %>
+            
+            <tr>
+               <td><%= xml_file.name %></td>
+               <td><%= link_to "Download XML File", xml_file_download_path(user_id: @user.id, xml_file_id: xml_file.id) %></td>
+               <td><%= button_to "Create Deck", pathfinder_decks_path(@user, xml_file_id: xml_file.id, name: xml_file.name), method: :post %></td>
+               <td><%= button_to "Delete", xml_file_url(@user, xml_file_id: xml_file.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{xml_file.name}?" %></td>
+            </tr>
+            
+         <% end %>
+      </tbody>
+      
+   </table>
+
+   <table class = "table table-bordered table-striped" data-turbolinks="false">
+      <thead>
          <tr>
-            <td><%= "#{deck.name}" %></td>
-            <td><%= link_to "Download Deck", pathfinder_deck_download_path(user_id: @user.id, pathfinder_deck_id: deck.id, name: deck.name) %></td>
-            <td><%= button_to "Delete Deck", pathfinder_deck_path(user_id: @user.id, id: deck.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{deck.name}?" %></td>
+            <th>Name</th>
+            <th>Download Link</th>
+            <th> </th>
          </tr>
-         
-      <% end %>
-   </tbody>
-   
-</table>
+      </thead>
+      
+      <tbody>
+         <% @decks.each do |deck| %>
+            
+            <tr>
+               <td><%= "#{deck.name}" %></td>
+               <td><%= link_to "Download Deck", pathfinder_deck_download_path(user_id: @user.id, pathfinder_deck_id: deck.id, name: deck.name) %></td>
+               <td><%= button_to "Delete Deck", pathfinder_deck_path(user_id: @user.id, id: deck.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{deck.name}?" %></td>
+            </tr>
+            
+         <% end %>
+      </tbody>
+      
+   </table>
+</div>

@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'pry'
 gem 'crack'
 gem 'json'
@@ -9,6 +8,7 @@ gem 'pathfinder_deck_builder'
 gem 'fog'
 gem 'figaro'
 gem 'aws-sdk'
+gem 'stripe'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
