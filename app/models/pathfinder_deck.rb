@@ -6,10 +6,10 @@ class PathfinderDeck < ActiveRecord::Base
   belongs_to :user
 
   def compile(file, name)
-    @file = file
-    @name = name
-    @content = PathfinderDeckBuilder::Compiler.new(file).prepare_for_s3
+    compiler = PathfinderDeckBuilder::Compiler.new(file)
 
-    self.update_attributes!(contents: @content, name: @name)
+    self.update_attributes!(name: name)
+
+    JSON.pretty_generate(compiler.prepare_for_s3)
   end
 end
