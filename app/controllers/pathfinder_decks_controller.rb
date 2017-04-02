@@ -1,4 +1,5 @@
 class PathfinderDecksController < ApplicationController
+  before_action :authenticate_user!
 
   before_action :set_deck, except: [:create, :destroy]
   before_action :set_s3_client, except: [:create, :destroy]
@@ -11,13 +12,13 @@ class PathfinderDecksController < ApplicationController
 
   def create
     @user = User.find(current_user)
-    @xml_file = @user.xml_files.find(params[:format])
+    @xml_file = @user.xml_files.find(params[:xml_file_id])
     @deck = @user.pathfinder_decks.new
 
     @deck.compile(@xml_file.attachment.read, params[:name])
     
     if @deck.save
-       redirect_to user_xml_files_path, notice: "The deck has been created."
+       redirect_to xml_files_path, notice: "The deck has been created."
     else
        render :new
     end
@@ -25,9 +26,9 @@ class PathfinderDecksController < ApplicationController
 
   def destroy
     @user = User.find(current_user)
-    @deck = PathfinderDeck.find(params[:id])
+    @deck = PathfinderDeck.find(params[:pathfinder_deck_id])
     @deck.destroy
-    redirect_to user_xml_files_path, notice:  "The deck has been deleted."
+    redirect_to xml_files_path, notice:  "The deck has been deleted."
   end
 
   private

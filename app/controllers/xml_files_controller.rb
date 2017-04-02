@@ -17,7 +17,7 @@ class XmlFilesController < ApplicationController
       @xml_file = @user.xml_files.new(xml_file_params)
       
       if @xml_file.save
-         redirect_to user_xml_files_path, notice: "The xml_file #{@xml_file.name} has been uploaded."
+         redirect_to xml_files_path, notice: "The xml_file #{@xml_file.name} has been uploaded."
       else
          render "new"
       end
@@ -25,9 +25,9 @@ class XmlFilesController < ApplicationController
    
    def destroy
       @user = User.find(current_user)
-      @xml_file = XmlFile.find(params[:id])
+      @xml_file = XmlFile.find(params[:xml_file_id])
       @xml_file.destroy
-      redirect_to user_xml_files_path, notice:  "The xml_file #{@xml_file.name} has been deleted."
+      redirect_to xml_files_path, notice:  "The xml_file #{@xml_file.name} has been deleted."
    end
    
    private

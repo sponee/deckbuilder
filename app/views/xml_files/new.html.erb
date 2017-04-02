@@ -11,12 +11,12 @@
 <% end %>
 
 <div class = "well">
-   <%= form_for [@user, @xml_file], html: { multipart: true } do |f| %>
+   <%= form_for [@xml_file], html: { multipart: true } do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
       <%= f.label :attachment %>
       <%= f.file_field :attachment %>
       <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
-   <p><%= link_to "Cancel", user_xml_files_path(current_user) %>
+   <p><%= link_to "Cancel", xml_files_path(current_user) %>
 </div>
