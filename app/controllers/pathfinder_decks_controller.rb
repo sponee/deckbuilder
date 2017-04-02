@@ -15,7 +15,9 @@ class PathfinderDecksController < ApplicationController
     @xml_file = @user.xml_files.find(params[:xml_file_id])
     @deck = @user.pathfinder_decks.new
 
-    @deck.compile(@xml_file.attachment.read, params[:name])
+    @s3 = Aws::S3::Resource.new(region:ENV["REGION"])
+    @obj = @s3.bucket(ENV["AWS_BUCKET"]).object(params[:name])
+    @obj.put(body: @deck.compile(@xml_file.attachment.read, params[:name]))
     
     if @deck.save
        redirect_to xml_files_path, notice: "The deck has been created."
