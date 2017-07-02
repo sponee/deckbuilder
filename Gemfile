@@ -9,6 +9,7 @@ gem 'fog'
 gem 'figaro'
 gem 'aws-sdk'
 gem 'stripe'
+gem 'puma'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
