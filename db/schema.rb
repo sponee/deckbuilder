@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20170703194220) do
 
   create_table "campaigns", force: :cascade do |t|
+    t.string   "name"
     t.text     "description"
     t.string   "simulator_url"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.string   "name"
     t.date     "next_session"
     t.integer  "user_id"
   end
