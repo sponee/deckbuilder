@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-	before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def show
     @user = User.find(current_user)
