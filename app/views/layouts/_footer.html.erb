@@ -1,5 +1,5 @@
 <footer class="navbar-right navbar-default navbar-fixed-bottom">
-  <div class="panel panel-default">
+  <div class="panel panel-default container">
     <div class="panel-body">
       <% if @user && @user.id != nil %>
         <%= link_to 'Logout', destroy_user_session_url, method: :delete %>

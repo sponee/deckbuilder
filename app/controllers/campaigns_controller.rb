@@ -27,6 +27,13 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
   end
 
+  def update
+    @campaign = Campaign.find(params[:id])
+    if @campaign.update!(campaign_params)
+      redirect_to @campaign, notice: "The campaign has been updated."
+    end
+  end
+
   def destroy
      @user = User.find(current_user)
      @campaign = Campaign.find(params[:id])
