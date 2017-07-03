@@ -1,5 +1,5 @@
 <div class="container">
-	<h3>Start A New Campaign</h3>
+	<h3>Edit <%= @campaign.name %></h3>
 	<div class="form-inputs">
 	  <div class="form-well well">
 			<%= simple_form_for(:campaign, url: campaigns_path, method: :post, html: { class: 'form-horizontal' }) do |f| %>
@@ -7,7 +7,7 @@
 				<%= f.input :description %>
 				<%= f.input :simulator_url, label: "Simulator URL" %>
 				<%= f.input :next_session, html5: true, input_html: {value: Date.today} %>
-				<%= f.button :submit, "Begin the Campaign!", class: "btn-lg submit-button btn-primary" %>
+				<%= f.button :submit, "Update", class: "btn-lg submit-button btn-primary" %>
 			<% end %>
 			</div>
 		</div>
