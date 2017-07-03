@@ -7,6 +7,7 @@
           <li role="presentation"><%= link_to 'Log In', new_user_session_path %></li>
         <% elsif @user && @user.id != nil %>
           <li role="presentation"><%= link_to 'My Decks', xml_files_path %></h2></li>
+          <li role="presentation"><%= link_to 'My Campaigns', campaigns_path %></h2></li>
           <li role="presentation"><a href="https://sponee.github.io/generator/generate.html" target="_blank">Generate Cards</a></li>
           <li role="presentation"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></h2></li>
         <% end %>

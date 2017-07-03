@@ -2,6 +2,7 @@ Flix::Application.routes.draw do
   get 'welcome/index'
 
   devise_for :users
+  resources :campaigns
   resources :xml_files do get 'download', :user end
   resources :pathfinder_decks do get 'download', :user end
   resources :charges

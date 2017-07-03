@@ -1,0 +1,7 @@
+<div class="container">
+  <h3><%= @campaign.name %></h3>
+  <p><%= @campaign.description %></p>
+  <p>Next Session: <%= @campaign.next_session %></p>
+  <p><%= button_to("Edit Campaign", edit_campaign_path(@campaign)) %></p>
+  <%= button_to "Delete", campaign_path(@campaign), method: :delete, class: "btn btn-danger", confirm: "Are you positive?" %>
+</div>
