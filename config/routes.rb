@@ -1,6 +1,11 @@
 Flix::Application.routes.draw do
   get 'welcome/index'
 
+  authenticated :user do
+    match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
+    mount DelayedJobWeb, at: "/delayed_job"
+  end
+
   devise_for :users
   resources :campaigns
   resources :xml_files do get 'download', :user end

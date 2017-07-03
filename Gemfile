@@ -12,6 +12,7 @@ gem 'stripe'
 gem 'puma'
 gem 'simple_form'
 gem 'delayed_job_active_record'
+gem 'delayed_job_web'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
