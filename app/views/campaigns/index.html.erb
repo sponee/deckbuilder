@@ -1,6 +1,4 @@
-<div class="container">
-  <h3><%= link_to("Start a Campaign!", new_campaign_path) %></h3>
-  <% @campaigns.each do |c| %>
-    <p><%= link_to(c.name, campaign_path(c)) %></p>
-  <% end %>
-</div>
+<h3><%= link_to("Start a Campaign!", new_campaign_path) %></h3>
+<% @campaigns.each do |c| %>
+  <p><%= link_to(c.name, campaign_path(c)) %></p>
+<% end %>
