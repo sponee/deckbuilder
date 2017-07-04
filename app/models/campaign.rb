@@ -1,3 +1,5 @@
 class Campaign < ActiveRecord::Base
-  belongs_to :user
+  
+  has_many :campaign_memberships
+  has_many :users, through: :campaign_memberships
 end

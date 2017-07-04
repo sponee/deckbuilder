@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-
   has_many :xml_files
   has_many :pathfinder_decks
-  has_many :campaigns
+  has_many :campaign_memberships
+  has_many :campaigns, through: :campaign_memberships
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

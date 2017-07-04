@@ -16,6 +16,7 @@ class CampaignsController < ApplicationController
     @campaign = @user.campaigns.new(campaign_params)
 
      if @campaign.save
+        CampaignMembership.create!(user_id: @user.id, campaign_id: @campaign.id)
         redirect_to campaign_path(@campaign), notice: "The campaign begins!"
      else
         render "new"
