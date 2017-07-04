@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
 
   def create
     @user = User.find(current_user)
-    @campaign = @user.campaigns.new(campaign_params)
+    @campaign = Campaign.new(campaign_params)
 
      if @campaign.save
         CampaignMembership.create!(user_id: @user.id, campaign_id: @campaign.id)
@@ -50,6 +50,6 @@ class CampaignsController < ApplicationController
   private
 
   def campaign_params
-    params.require(:campaign).permit(:name, :description, :simulator_url, :next_session)
+    params.require(:campaign).permit(:name, :description, :simulator_url, :next_session, :user_id)
   end
 end

@@ -6,6 +6,7 @@
       <%= f.input :description %>
       <%= f.input :simulator_url, label: "Simulator URL" %>
       <%= f.input :next_session, html5: true, input_html: {value: Date.today} %>
+      <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.button :submit, "Begin the Campaign!", class: "btn-lg submit-button btn-primary" %>
     <% end %>
     </div>
