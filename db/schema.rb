@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704014757) do
+ActiveRecord::Schema.define(version: 20170706001352) do
 
   create_table "campaign_memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170704014757) do
     t.text    "contents"
     t.integer "user_id"
     t.string  "document_path"
-    t.string  "xml_file"
+    t.string  "xml_file_id"
   end
 
   add_index "pathfinder_decks", ["user_id"], name: "index_pathfinder_decks_on_user_id"
