@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :xml_files
-  has_many :pathfinder_decks
-  has_many :campaign_memberships
+  has_many :xml_files, dependent: :destroy
+  has_many :pathfinder_decks, dependent: :destroy
+  has_many :campaign_memberships, dependent: :destroy
   has_many :campaigns, through: :campaign_memberships
 
   # Include default devise modules. Others available are:
