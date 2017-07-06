@@ -16,9 +16,8 @@
             <td><%= xml_file.name %></td>
             <td><%= link_to "Download XML File", xml_file_download_path(user_id: @user.id, xml_file_id: xml_file.id) %></td>
             <td><% if xml_file.pathfinder_deck %>
-
                   <%= link_to "Download Deck", pathfinder_deck_download_path(user_id: @user.id, pathfinder_deck_id: xml_file.pathfinder_deck.id, name: xml_file.pathfinder_deck.name) %>
-               <% end %>
+                <% end %>
             </td>
             <td><%= button_to "Delete", xml_file_url(@user, xml_file_id: xml_file.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{xml_file.name}?" %></td>
          </tr>
