@@ -4,8 +4,8 @@
       <tr>
          <th>Name</th>
          <th>Download XML File</th>
-         <th> </th>
-         <th> </th>
+         <th>Download Deck</th>
+         <th>Delete</th>
       </tr>
    </thead>
 
@@ -15,7 +15,10 @@
          <tr>
             <td><%= xml_file.name %></td>
             <td><%= link_to "Download XML File", xml_file_download_path(user_id: @user.id, xml_file_id: xml_file.id) %></td>
-            <td></td>
+            <td><% if xml_file.pathfinder_deck %>
+                  <%= link_to "Download Deck", pathfinder_deck_download_path(user_id: @user.id, pathfinder_deck_id: xml_file.pathfinder_deck.id, name: xml_file.pathfinder_deck.name) %>
+                <% end %>
+            </td>
             <td><%= button_to "Delete", xml_file_url(@user, xml_file_id: xml_file.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{xml_file.name}?" %></td>
          </tr>
          
@@ -25,26 +28,3 @@
 </table>
 
 <%= link_to "New XML File", new_xml_file_path(@user), class: "btn btn-primary" %>
-
-<h3>My Decks</h3>
-<table class = "table table-bordered table-striped" data-turbolinks="false">
-   <thead>
-      <tr>
-         <th>Name</th>
-         <th>Download Link</th>
-         <th> </th>
-      </tr>
-   </thead>
-   
-   <tbody>
-      <% @decks.each do |deck| %>
-         
-         <tr>
-            <td><%= "#{deck.name}" %></td>
-            <td><%= link_to "Download Deck", pathfinder_deck_download_path(user_id: @user.id, pathfinder_deck_id: deck.id, name: deck.name) %></td>
-            <td><%= button_to "Delete Deck", pathfinder_deck_path(user_id: @user.id, id: deck.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{deck.name}?" %></td>
-         </tr>
-         
-      <% end %>
-   </tbody>
-</table>

@@ -1,4 +1,5 @@
 class PathfinderDeck < ActiveRecord::Base
+  belongs_to :xml_file
 
   attr_accessor :cards
   attr_accessor :xml_file
