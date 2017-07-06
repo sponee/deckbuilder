@@ -1,4 +1,15 @@
+<h3>New HeroLab File</h3>
+
+<div class = "well">
+   <%= simple_form_for :xml_file, html: { multipart: true, class: 'form-horizontal' } do |f| %>
+      <%= f.input :name, as: :string %>
+      <div class="row"><%= f.file_field :attachment %></div>
+      <div class="row" style="padding-top:15px;"><%= f.submit "Upload", class: "btn btn-primary" %></div>
+   <% end %>
+</div>
+
 <h3>My HeroLab Files</h3>
+
 <table class="table table-bordered table-striped" data-turbolinks="false">
    <thead>
       <tr>
@@ -26,5 +37,3 @@
    </tbody>
    
 </table>
-
-<%= link_to "New XML File", new_xml_file_path(@user), class: "btn btn-primary" %>

@@ -7,7 +7,6 @@ class XmlFile < ActiveRecord::Base
   after_create :create_pathfinder_deck
 
   def create_pathfinder_deck
-    binding.pry
     CreatePathfinderDeckJob.perform_later(self.user, self)
   end
 end
