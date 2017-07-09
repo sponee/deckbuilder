@@ -36,8 +36,8 @@ class XmlFilesController < ApplicationController
   end
   
   private
-     def xml_file_params
-     params.require(:xml_file).permit(:user_id, :name, :attachment)
-  end
   
+  def xml_file_params
+    params.require(:xml_file).permit(:user_id, :name, :attachment)
+  end
 end
