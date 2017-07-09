@@ -29,6 +29,8 @@ class CampaignInvitation < ActiveRecord::Base
   end
 
   def send_invitation
-    CampaignInvitationMailer
+    CampaignInvitationMailer.campaign_invitation_email(User.find(self.sender_id),
+                                                       User.find_by(email: self.recipient_email),
+                                                       Campaign.find(self.campaign_id)).deliver_later
   end
 end

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :pathfinder_decks, dependent: :destroy
   has_many :campaign_memberships, dependent: :destroy
   has_many :campaigns, through: :campaign_memberships
+  has_many :campaign_invitations, foreign_key: :recipient_email, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
