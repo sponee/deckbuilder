@@ -11,7 +11,6 @@ class PathfinderDecksController < ApplicationController
   end
 
   def destroy
-    @user = User.find(current_user)
     @deck = PathfinderDeck.find(params[:id])
     @deck.destroy
     redirect_to xml_files_path, notice:  "The deck has been deleted."

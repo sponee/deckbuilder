@@ -1,20 +1,16 @@
 class CampaignsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :pending_invitations
 
   def show
-    @user = User.find(current_user)
     @campaign = Campaign.find(params[:id])
   end
 
   def new
-    @user = User.find(current_user)
     @campaign = @user.campaigns.new
   end
 
   def create
-    @user = User.find(current_user)
     @campaign = Campaign.new(campaign_params)
-
      if @campaign.save
         CampaignMembership.create!(user_id: @user.id, campaign_id: @campaign.id)
         redirect_to campaign_path(@campaign), notice: "The campaign begins!"
@@ -25,10 +21,9 @@ class CampaignsController < ApplicationController
 
   def edit
     if verified_membership
-      @user = User.find(current_user)
       @campaign = Campaign.find(params[:id])
     else
-      redirect_to :back, notice: "That isn't your campaign."
+      redirect_to campaigns_path, notice: "That isn't your campaign."
     end
   end
 
@@ -41,31 +36,29 @@ class CampaignsController < ApplicationController
 
   def destroy
     if verified_membership
-       @user = User.find(current_user)
        @campaign = Campaign.find(params[:id])
        @campaign.destroy
        redirect_to campaigns_path, notice:  "The campaign is over."
      else
-      redirect_to :back, notice: "That isn't your campaign."
+      redirect_to campaigns_path, notice: "That isn't your campaign."
     end
   end
 
   def index
-    @user = User.find(current_user)
     @campaigns = @user.campaigns
   end
 
   private
 
   def pending_invitations
-    if CampaignInvitation.pending_for(@user.email).count > 0
+    user = current_user
+    if CampaignInvitation.pending_for(user.email).count > 0
       flash.now[:notice] = %Q[<a href="/pending_invitations">You have pending invitations</a>]
     end
   end
 
   def verified_membership
-    user = current_user
-    CampaignMembership.find_by(campaign_id: params[:id], user_id: user.id)
+    CampaignMembership.find_by(campaign_id: params[:id], user_id: @user.id)
   end
 
   def campaign_params

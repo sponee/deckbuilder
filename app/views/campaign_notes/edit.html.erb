@@ -1,0 +1,16 @@
+<scripttype="text/javascript" src="/assets/tinymce.js">
+
+<h3>Edit <%= @campaign_note.name %></h3>
+<div class="form-inputs">
+  <div class="form-well well">
+    <%= simple_form_for(@campaign_note, url: campaign_campaign_note_path(campaign_id: @campaign_note.campaign_id), method: :patch, html: { class: 'form-horizontal' }) do |f| %>
+      <%= f.input :name %>
+      <%= f.text_area :content, class: "tinymce", rows: 40, cols: 120 %>
+      <%= f.input :session_date, html5: true, input_html: {value: Date.today} %>
+      <div class="row"><%= f.button :submit, "Update Notes", class: "btn-lg submit-button btn-primary" %></div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<%= tinymce %>

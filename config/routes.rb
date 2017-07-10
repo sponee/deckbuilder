@@ -3,6 +3,7 @@ Flix::Application.routes.draw do
   get 'pending_invitations', to: "campaign_invitations#pending",  as: :pending_invitations
   post 'pending_invitations_accept', to: "campaign_invitations#accept",  as: :accept_invitation
   post 'pending_invitations_decline', to: "campaign_invitations#decline",  as: :decline_invitation
+  get 'campaign_notes/:id/edit', to: "campaign_notes#edit", as: :edit_campaign_note
 
   authenticated :user do
     match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
@@ -10,7 +11,9 @@ Flix::Application.routes.draw do
   end
 
   devise_for :users
-  resources :campaigns
+  resources :campaigns do
+    resources :campaign_notes
+  end
   resources :xml_files do get 'download', :user end
   resources :pathfinder_decks do get 'download', :user end
   resources :charges

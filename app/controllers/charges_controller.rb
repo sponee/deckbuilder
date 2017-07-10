@@ -1,10 +1,8 @@
 class ChargesController < ApplicationController
   def new
-    @user = User.find(current_user)
   end
 
   def create
-    @user = User.find(current_user)
     # Amount in cents
     @amount = 500
 

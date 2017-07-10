@@ -3,7 +3,6 @@ class CampaignInvitationsController < ApplicationController
 
   def show
     if verified_recipient
-      @user = User.find(current_user)
       @campaign_invitation = CampaignInvitation.find_by(token: params[:token]) if :verified_recipient
     else
       redirect_to :back, notice: "That's not your Invitation!"
@@ -11,12 +10,10 @@ class CampaignInvitationsController < ApplicationController
   end
 
   def pending
-    @user = User.find(current_user)
     @campaign_invitations = CampaignInvitation.pending_for(@user.email)
   end
 
   def create
-    @user = User.find(current_user)
     @campaign_invitation = CampaignInvitation.new(campaign_invitation_params)
     if @campaign_invitation.save!
       redirect_to :back, notice: "Your Invitation has been sent!"
@@ -46,7 +43,7 @@ class CampaignInvitationsController < ApplicationController
   private
 
   def verified_recipient
-    CampaignInvitation.find_by(token: params[:token]).recipient_email == current_user.email
+    CampaignInvitation.find_by(token: params[:token]).recipient_email == @user.email
   end
 
   def campaign_invitation_params
