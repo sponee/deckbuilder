@@ -3,3 +3,11 @@
 <p>Next Session: <%= @campaign.next_session %></p>
 <p><%= button_to("Edit Campaign", edit_campaign_path(@campaign), method: :get) %></p>
 <%= button_to "Delete", campaign_path(@campaign), method: :delete, class: "btn btn-danger", confirm: "Are you positive?" %>
+<div class = "well">
+   <%= simple_form_for :campaign_invitation, url: campaign_invitations_path, method: :post, html: { multipart: true, class: 'form-horizontal' } do |f| %>
+      <%= f.input :recipient_email, as: :string %>
+      <%= f.hidden_field :sender_id, value: @user.id %>
+      <%= f.hidden_field :campaign_id, value: @campaign.id %>
+      <div class="row" style="padding-top:15px;"><%= f.submit "Send Invitation", class: "btn btn-primary" %></div>
+   <% end %>
+</div>
