@@ -2,11 +2,17 @@ class CampaignInvitationsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    CampaignMembership.find(params[:id]) if :verified_recipient
+    if verified_recipient
+      @user = User.find(current_user)
+      @campaign_invitation = CampaignInvitation.find_by(token: params[:token]) if :verified_recipient
+    else
+      redirect_to :back, notice: "That's not your Invitation!"
+    end
   end
 
-  def index
-    CampaignMembership.pending_for(current_user.email)
+  def pending
+    @user = User.find(current_user)
+    @campaign_invitations = CampaignInvitation.pending_for(@user.email)
   end
 
   def create
@@ -19,9 +25,25 @@ class CampaignInvitationsController < ApplicationController
     end
   end
 
-  private
+  def accept
+    @campaign_invitation = CampaignInvitation.find(params[:id])
+    if @campaign_invitation.accept!
+      redirect_to campaign_path(@campaign_invitation.campaign_id), notice: "You joined the campaign!"
+    else
+      redirect_to pending_invitations_path, notice: "Something went wrong"
+    end
+  end
 
-  def 
+  def decline
+    @campaign_invitation = CampaignInvitation.find(params[:id])
+    if @campaign_invitation.decline!
+      redirect_to pending_invitations_path, notice: "You declined joining the campaign!"
+    else
+      redirect_to pending_invitations_path
+    end
+  end
+
+  private
 
   def verified_recipient
     CampaignInvitation.find_by(token: params[:token]).recipient_email == current_user.email

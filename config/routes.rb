@@ -1,5 +1,8 @@
 Flix::Application.routes.draw do
   get 'welcome/index'
+  get 'pending_invitations', to: "campaign_invitations#pending",  as: :pending_invitations
+  post 'pending_invitations_accept', to: "campaign_invitations#accept",  as: :accept_invitation
+  post 'pending_invitations_decline', to: "campaign_invitations#decline",  as: :decline_invitation
 
   authenticated :user do
     match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]

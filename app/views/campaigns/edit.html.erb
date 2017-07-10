@@ -6,8 +6,9 @@
       <%= f.input :description %>
       <%= f.input :simulator_url, label: "Simulator URL" %>
       <%= f.input :next_session, html5: true, input_html: {value: Date.today} %>
-      <%= f.button :submit, "Update", class: "btn-lg submit-button btn-primary" %>
+      <div class="row"><%= f.button :submit, "Update", class: "btn-lg submit-button btn-primary" %></div>
     <% end %>
     </div>
   </div>
+  <%= link_to "Delete Campaign", campaign_path(@campaign), method: :delete, class: "btn btn-danger", data: { confirm: "Are you positive?" } %>
 </div>
