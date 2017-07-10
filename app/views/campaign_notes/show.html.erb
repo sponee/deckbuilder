@@ -2,4 +2,4 @@
 <h3>Session Date: <%= @campaign_note.session_date %></h3> 
 <h3>Notes:</h3>
 <%= @campaign_note.content.html_safe %>
-<%= link_to("Edit", edit_campaign_note_path(id: @campaign_note.id), method: :get) %>
+<%= link_to("Edit", edit_campaign_note_path(id: @campaign_note.id.html_safe), method: :get) %>

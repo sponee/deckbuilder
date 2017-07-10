@@ -15,7 +15,7 @@ class CampaignInvitation < ActiveRecord::Base
 
   def accept!
     self.accepted = true
-    CampaignMembership.create!(user_id: User.find_by(email: self.recipient_email),
+    CampaignMembership.create!(user_id: User.find_by(email: self.recipient_email).id,
                                campaign_id: self.campaign_id)
     save!
   end

@@ -3,7 +3,7 @@
 <%= @campaign_notes.find_each do |n| %>
   <div class="well">
     <p><%= link_to(n.name, campaign_campaign_note_path(id: n.id)) %></p>
-    <p><%= n.content %></p>
+    <p><%= n.content.html_safe %></p>
   </div>
 <% end %>
 </div>
