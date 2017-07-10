@@ -1,0 +1,10 @@
+<h3>Your Pending Invitations</h3>
+
+<div class="well">
+<% @campaign_invitations.each do |c| %>
+  <div class="container">
+    <p><%= c.campaign.name %></p>
+    <span><%= link_to("Accept", accept_invitation_path(id: c.id), method: :post) %> | <%= link_to("Decline", decline_invitation_path(id: c.id), method: :post) %> | <%= link_to("Campaign", campaign_path(c.campaign)) %> </span>
+  </div>
+<% end %> 
+</div>

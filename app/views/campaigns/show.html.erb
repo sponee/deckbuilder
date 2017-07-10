@@ -1,9 +1,8 @@
 <h3><%= @campaign.name %></h3>
 <p><%= @campaign.description %></p>
-<p>Next Session: <%= @campaign.next_session %></p>
-<p><%= button_to("Edit Campaign", edit_campaign_path(@campaign), method: :get) %></p>
-<%= button_to "Delete", campaign_path(@campaign), method: :delete, class: "btn btn-danger", confirm: "Are you positive?" %>
-<div class = "well">
+<b>Next Session:</b> <%= @campaign.next_session %>
+<h3>Invite a new Player!</h3>
+<div class = "container well">
    <%= simple_form_for :campaign_invitation, url: campaign_invitations_path, method: :post, html: { multipart: true, class: 'form-horizontal' } do |f| %>
       <%= f.input :recipient_email, as: :string %>
       <%= f.hidden_field :sender_id, value: @user.id %>
@@ -11,3 +10,4 @@
       <div class="row" style="padding-top:15px;"><%= f.submit "Send Invitation", class: "btn btn-primary" %></div>
    <% end %>
 </div>
+<p><%= button_to("Edit Campaign", edit_campaign_path(@campaign), method: :get) %></p>

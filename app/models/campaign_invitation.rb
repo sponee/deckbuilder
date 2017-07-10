@@ -6,6 +6,7 @@ class CampaignInvitation < ActiveRecord::Base
   validates               :sender_id, :recipient_email, :campaign_id, presence: true
   validates_uniqueness_of :token, scope: [:sender_id, :recipient_email, :campaign_id], allow_nil: true
   validates_uniqueness_of :campaign_id, scope: [:sender_id, :recipient_email]
+  validates_uniqueness_of :recipient_email, scope: [:campaign_id]
 
   before_create :create_token
   after_create :send_invitation
@@ -16,10 +17,12 @@ class CampaignInvitation < ActiveRecord::Base
     self.accepted = true
     CampaignMembership.create!(user_id: User.find_by(email: self.recipient_email),
                                campaign_id: self.campaign_id)
+    save!
   end
 
   def decline!
     self.accepted = false
+    save!
   end
 
   private

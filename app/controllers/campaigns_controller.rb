@@ -24,42 +24,52 @@ class CampaignsController < ApplicationController
   end
 
   def edit
-    @user = User.find(current_user)
-    @campaign = Campaign.find(params[:id])
+    if verified_membership
+      @user = User.find(current_user)
+      @campaign = Campaign.find(params[:id])
+    else
+      redirect_to :back, notice: "That isn't your campaign."
+    end
   end
 
   def update
     @campaign = Campaign.find(params[:id])
-    if @campaign.update!(campaign_params)
+    if @campaign.update!(campaign_params) && verified_membership
       redirect_to @campaign, notice: "The campaign has been updated."
     end
   end
 
   def destroy
-     @user = User.find(current_user)
-     @campaign = Campaign.find(params[:id])
-     @campaign.destroy
-     redirect_to campaigns_path, notice:  "The campaign is over."
+    if verified_membership
+       @user = User.find(current_user)
+       @campaign = Campaign.find(params[:id])
+       @campaign.destroy
+       redirect_to campaigns_path, notice:  "The campaign is over."
+     else
+      redirect_to :back, notice: "That isn't your campaign."
+    end
   end
 
   def index
     @user = User.find(current_user)
     @campaigns = @user.campaigns
-    if pending_invitations
-      render index, notice: "You have pending Invitations"
-    end
-  end
-
-  private
-
-  def campaign_params
-    params.require(:campaign).permit(:name, :description, :simulator_url, :next_session, :user_id)
+    pending_invitations
   end
 
   private
 
   def pending_invitations
-    @user = current_user
-    CampaignInvitation.pending_for(@user.email).count > 0
+    if CampaignInvitation.pending_for(@user.email).count > 0
+      flash.now[:notice] = %Q[<a href="/pending_invitations">You have pending invitations</a>]
+    end
+  end
+
+  def verified_membership
+    user = current_user
+    CampaignMembership.find_by(campaign_id: params[:id], user_id: user.id)
+  end
+
+  def campaign_params
+    params.require(:campaign).permit(:name, :description, :simulator_url, :next_session, :user_id)
   end
 end
