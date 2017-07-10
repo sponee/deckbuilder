@@ -53,7 +53,6 @@ class CampaignsController < ApplicationController
   def index
     @user = User.find(current_user)
     @campaigns = @user.campaigns
-    pending_invitations
   end
 
   private
