@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :pending_invitations
 
   def show
     @user = User.find(current_user)
@@ -28,7 +28,7 @@ class CampaignsController < ApplicationController
       @user = User.find(current_user)
       @campaign = Campaign.find(params[:id])
     else
-      redirect_to :back, notice: "That isn't your campaign."
+      redirect_to campaigns_path, notice: "That isn't your campaign."
     end
   end
 
@@ -46,7 +46,7 @@ class CampaignsController < ApplicationController
        @campaign.destroy
        redirect_to campaigns_path, notice:  "The campaign is over."
      else
-      redirect_to :back, notice: "That isn't your campaign."
+      redirect_to campaigns_path, notice: "That isn't your campaign."
     end
   end
 
@@ -58,14 +58,15 @@ class CampaignsController < ApplicationController
   private
 
   def pending_invitations
-    if CampaignInvitation.pending_for(@user.email).count > 0
+    user = current_user
+    if CampaignInvitation.pending_for(user.email).count > 0
       flash.now[:notice] = %Q[<a href="/pending_invitations">You have pending invitations</a>]
     end
   end
 
   def verified_membership
     user = current_user
-    CampaignMembership.find_by(campaign_id: params[:id], user_id: user.id)
+    !CampaignMembership.where(campaign_id: params[:id], user_id: user.id).empty?
   end
 
   def campaign_params
