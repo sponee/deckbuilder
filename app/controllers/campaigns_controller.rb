@@ -2,19 +2,15 @@ class CampaignsController < ApplicationController
   before_action :authenticate_user!, :pending_invitations
 
   def show
-    @user = User.find(current_user)
     @campaign = Campaign.find(params[:id])
   end
 
   def new
-    @user = User.find(current_user)
     @campaign = @user.campaigns.new
   end
 
   def create
-    @user = User.find(current_user)
     @campaign = Campaign.new(campaign_params)
-
      if @campaign.save
         CampaignMembership.create!(user_id: @user.id, campaign_id: @campaign.id)
         redirect_to campaign_path(@campaign), notice: "The campaign begins!"
@@ -25,7 +21,6 @@ class CampaignsController < ApplicationController
 
   def edit
     if verified_membership
-      @user = User.find(current_user)
       @campaign = Campaign.find(params[:id])
     else
       redirect_to campaigns_path, notice: "That isn't your campaign."
@@ -41,7 +36,6 @@ class CampaignsController < ApplicationController
 
   def destroy
     if verified_membership
-       @user = User.find(current_user)
        @campaign = Campaign.find(params[:id])
        @campaign.destroy
        redirect_to campaigns_path, notice:  "The campaign is over."
@@ -51,7 +45,6 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    @user = User.find(current_user)
     @campaigns = @user.campaigns
   end
 
@@ -65,8 +58,7 @@ class CampaignsController < ApplicationController
   end
 
   def verified_membership
-    user = current_user
-    !CampaignMembership.where(campaign_id: params[:id], user_id: user.id).empty?
+    CampaignMembership.find_by(campaign_id: params[:id], user_id: @user.id)
   end
 
   def campaign_params
