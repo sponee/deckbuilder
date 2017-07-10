@@ -12,14 +12,11 @@ class XmlFilesController < ApplicationController
   end
   
   def new
-     
      @xml_file = @user.xml_files.new
   end
   
   def create
-     
      @xml_file = @user.xml_files.new(xml_file_params)
-     
      if @xml_file.save
         redirect_to xml_files_path, notice: "The xml_file #{@xml_file.name} has been uploaded."
      else
@@ -28,7 +25,6 @@ class XmlFilesController < ApplicationController
   end
   
   def destroy
-     
      @xml_file = XmlFile.find(params[:xml_file_id])
      @xml_file.destroy
      redirect_to xml_files_path, notice:  "The xml_file #{@xml_file.name} has been deleted."
