@@ -45,11 +45,21 @@ class CampaignsController < ApplicationController
   def index
     @user = User.find(current_user)
     @campaigns = @user.campaigns
+    if pending_invitations
+      render index, notice: "You have pending Invitations"
+    end
   end
 
   private
 
   def campaign_params
     params.require(:campaign).permit(:name, :description, :simulator_url, :next_session, :user_id)
+  end
+
+  private
+
+  def pending_invitations
+    @user = current_user
+    CampaignInvitation.pending_for(@user.email).count > 0
   end
 end
