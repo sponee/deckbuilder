@@ -3,12 +3,14 @@
   <div class="form-well well">
     <%= simple_form_for(:campaign, url: campaigns_path, method: :post, html: { class: 'form-horizontal' }) do |f| %>
       <%= f.input :name %>
-      <%= f.input :description %>
       <%= f.input :simulator_url, label: "Simulator URL" %>
-      <%= f.input :next_session, html5: true, input_html: {value: Date.today} %>
+      <%= f.input :next_session, html5: true, input_html: {value: Date.today}, as: :date %>
+      <%= f.text_area :description, class: "tinymce", rows: 20, cols: 40 %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <div class="row"><%= f.button :submit, "Begin the Campaign!", class: "btn-lg submit-button btn-primary" %></div>
     <% end %>
     </div>
   </div>
 </div>
+
+<%= tinymce %>
