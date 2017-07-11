@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-8">
       <h1><%= @campaign.name %></h1>
-      <%= @campaign.description %>
+      <%= @campaign.description.html_safe %>
       <h3>Next Session: <%= @campaign.next_session %></h3> 
     </div>
   <div class="col-xs-4">
