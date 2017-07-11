@@ -9,8 +9,7 @@
     <% if @campaign.user_id == current_user.id %>
     <h1>Invite a new Player</h1>
       <%= render 'campaign_invitations/create_form' %>
-    <h3>Update Campaign</h3>
-      <%= button_to("Update Campaign", edit_campaign_path(@campaign), method: :get) %>
+      <%= link_to("Update Campaign", edit_campaign_path(@campaign), method: :get, class: "btn btn-default btn-lg active") %>
     <% end %>
   </div>
 </div>
