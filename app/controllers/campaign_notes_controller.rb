@@ -47,6 +47,6 @@ class CampaignNotesController < ApplicationController
   end
 
   def campaign_note_params
-    params.require(:campaign_note).permit(:name, :content, :user_id, :campaign_id)
+    params.require(:campaign_note).permit(:name, :content, :user_id, :campaign_id, :session_date)
   end
 end
