@@ -5,6 +5,6 @@ class CampaignInvitationMailer < ApplicationMailer
     @user = user
     @recipient = recipient
     @campaign = campaign
-    mail(to: @recipient.email, subject: "You're Invited to Join #{@campaign.name}")
+    mail(to: @recipient, subject: "You're Invited to Join #{@campaign.name}")
   end
 end
