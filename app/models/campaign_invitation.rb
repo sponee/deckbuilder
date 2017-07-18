@@ -33,7 +33,7 @@ class CampaignInvitation < ActiveRecord::Base
 
   def send_invitation
     CampaignInvitationMailer.campaign_invitation_email(User.find(self.sender_id),
-                                                       self.recipient_email.downcase),
+                                                       self.recipient_email.downcase,
                                                        Campaign.find(self.campaign_id)).deliver_later
   end
 end
