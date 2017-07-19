@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710051335) do
+ActiveRecord::Schema.define(version: 20170719233355) do
 
   create_table "campaign_invitations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -23,21 +23,12 @@ ActiveRecord::Schema.define(version: 20170710051335) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "campaign_membership_invitations", force: :cascade do |t|
-    t.string   "email"
-    t.integer  "campaign_id"
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.string   "token"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "campaign_memberships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "campaign_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "receive_notifications", default: true
   end
 
   create_table "campaign_notes", force: :cascade do |t|
@@ -75,6 +66,16 @@ ActiveRecord::Schema.define(version: 20170710051335) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "movies", force: :cascade do |t|
+    t.string   "title"
+    t.string   "rating"
+    t.decimal  "total_gross"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+    t.date     "released_on"
+  end
 
   create_table "pathfinder_decks", force: :cascade do |t|
     t.string  "name"
