@@ -2,6 +2,7 @@
   <div class="form-well well">
     <%= simple_form_for(:campaign_note, url: campaign_campaign_notes_path(campaign_id: @campaign.id), method: :post, html: { class: 'form-horizontal' }) do |f| %>
       <%= f.input :name %>
+      <%= f.input :description, input_html: {value: "The party goes on an adventure"} %>
       <%= f.input :session_date, html5: true, input_html: {value: Date.today}, as: :date %>
       <%= f.text_area :content, class: "tinymce", rows: 20, cols: 40 %>
       <%= f.hidden_field :user_id, value: @user.id %>
