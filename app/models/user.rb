@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :campaigns, through: :campaign_memberships, dependent: :destroy
   has_many :campaign_invitations, foreign_key: :recipient_email, dependent: :destroy
 
+  scope :subscribed_to, -> (campaign) { includes(:campaign_memberships).where(campaign_memberships: { receive_notifications: :true, campaign_id: campaign.id }) }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
