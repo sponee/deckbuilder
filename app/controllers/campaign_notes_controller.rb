@@ -30,10 +30,10 @@ class CampaignNotesController < ApplicationController
   end
 
   def edit
+    @campaign_note = CampaignNote.find(params[:id])
     if verified_ownership
-      @campaign_note = CampaignNote.find(params[:id])
     else
-      redirect_to campaign_campaign_notes_path, notice: "Those aren't your notes."
+      redirect_to campaign_campaign_note_path(campaign_id:@campaign_note.id, id: @campaign_note.id), notice: "Those aren't your notes."
     end
   end
 
@@ -47,6 +47,6 @@ class CampaignNotesController < ApplicationController
   end
 
   def campaign_note_params
-    params.require(:campaign_note).permit(:name, :content, :user_id, :campaign_id, :session_date)
+    params.require(:campaign_note).permit(:name, :description, :content, :user_id, :campaign_id, :session_date)
   end
 end
