@@ -1,4 +1,28 @@
+<div class="container-fluid">
+<h2>My Campaigns</h2>
+</div>
+<% @campaigns.each_slice(3) do |campaigns| %>
+  <div class="container">
+    <div class="row">
+      <% campaigns.each do |campaign| %>
+        <div class="col-xs-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= campaign.name %></h3>
+            </div>
+            <div class="panel-body">
+              <p><b>Next Session:</b> <%= campaign.next_session %></p>
+              <span><%= link_to("View", campaign_path(id: campaign.id)) %>
+                <% if campaign.game_master == current_user %>
+                  | <%= link_to("Update", edit_campaign_path(campaign.id)) %>
+                  | <%= link_to("Delete", campaign_path(campaign.id), method: :delete) %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <h3><%= link_to("Start a Campaign!", new_campaign_path) %></h3>
-<% @campaigns.each do |c| %>
-  <p><%= link_to(c.name, campaign_path(c)) %></p>
-<% end %>
