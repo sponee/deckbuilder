@@ -1,7 +1,8 @@
 <div class="container-fluid">
 <h2>My Campaigns</h2>
-<h3><%= link_to("Start a Campaign!", new_campaign_path) %></h3>
 </div>
+<div class="well">
+<h3><%= link_to("Start a Campaign!", new_campaign_path) %></h3>
 <% @campaigns.each_slice(3) do |campaigns| %>
   <div class="container-fluid">
     <div class="row">

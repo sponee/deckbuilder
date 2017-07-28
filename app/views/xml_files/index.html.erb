@@ -1,39 +1,39 @@
 <h3>New HeroLab File</h3>
 
 <div class = "well">
-   <%= simple_form_for :xml_file, html: { multipart: true, class: 'form-horizontal' } do |f| %>
-      <%= f.input :name, as: :string %>
-      <div class="row"><%= f.file_field :attachment %></div>
-      <div class="row" style="padding-top:15px;"><%= f.submit "Upload", class: "btn btn-primary" %></div>
-   <% end %>
+  <%= simple_form_for :xml_file, html: { multipart: true, class: 'form-horizontal' } do |f| %>
+    <%= f.input :name, as: :string %>
+    <div class="row"><%= f.file_field :attachment %></div>
+    <div class="row" style="padding-top:15px;"><%= f.submit "Upload", class: "btn btn-primary" %></div>
+  <% end %>
 </div>
 
 <h3>My HeroLab Files</h3>
-
-<table class="table table-bordered table-striped" data-turbolinks="false">
-   <thead>
+<div class = "well">
+  <table class="table table-bordered table-striped" data-turbolinks="false">
+    <thead>
       <tr>
-         <th>Name</th>
-         <th>Download XML File</th>
-         <th>Download Deck</th>
-         <th>Delete</th>
+        <th>Name</th>
+        <th>Download XML File</th>
+        <th>Download Deck</th>
+        <th>Delete</th>
       </tr>
-   </thead>
-
-   <tbody>
+    </thead>
+    <tbody>
       <% @xml_files.each do |xml_file| %>
-         
-         <tr>
-            <td><%= xml_file.name %></td>
-            <td><%= link_to "Download XML File", xml_file_download_path(user_id: @user.id, xml_file_id: xml_file.id) %></td>
-            <td><% if xml_file.pathfinder_deck %>
-                  <%= link_to "Download Deck", pathfinder_deck_download_path(user_id: @user.id, pathfinder_deck_id: xml_file.pathfinder_deck.id, name: xml_file.pathfinder_deck.name) %>
-                <% end %>
-            </td>
-            <td><%= button_to "Delete", xml_file_url(@user, xml_file_id: xml_file.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{xml_file.name}?" %></td>
-         </tr>
-         
-      <% end %>
-   </tbody>
-   
-</table>
+        <tr>
+          <td><%= xml_file.name %></td>
+          <td><%= link_to "Download XML File", xml_file_download_path(user_id: @user.id, xml_file_id: xml_file.id) %></td>
+          <td><% if xml_file.pathfinder_deck %>
+            <%= link_to "Download Deck", pathfinder_deck_download_path(user_id: @user.id, pathfinder_deck_id: xml_file.pathfinder_deck.id, name: xml_file.pathfinder_deck.name) %>
+            <% end %>
+          </td>
+          <td>
+            <%= button_to "Delete", xml_file_url(@user, xml_file_id: xml_file.id), method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{xml_file.name}?" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
