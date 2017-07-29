@@ -15,7 +15,7 @@
     </div>
     <div class="col-xs-4" style="float:right;">
       <h3>Next Session: <%= @campaign.next_session %></h3>
-      <h3>Simulator URL: <%= @campaign.simulator_url %></h3>
+      <h3>Simulator URL: <%= link_to(@campaign.simulator_url, @campaign.simulator_url) %></h3>
       <H3><%= @campaign.users.count %> Players</h3>
     </div>
   </div>
