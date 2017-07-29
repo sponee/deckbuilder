@@ -15,17 +15,25 @@ class CampaignNotesController < ApplicationController
 
   def create
     @campaign_note = CampaignNote.new(campaign_note_params)
-    if @campaign_note.save!
-      redirect_to campaign_campaign_note_path(campaign_id: params[:campaign_id], id: @campaign_note.id)
-    else 
-      render "new"
+    begin
+      if @campaign_note.save!
+        redirect_to campaign_campaign_note_path(campaign_id: params[:campaign_id], id: @campaign_note.id)
+      end
+    rescue => e
+      flash[:error] = e.message
+      redirect_to :back
     end
   end
 
   def update
     @campaign_note = CampaignNote.find(params[:id])
-    if @campaign_note.update!(campaign_note_params) && verified_ownership
-      redirect_to campaign_campaign_note_path(campaign_id: @campaign_note.campaign_id, id: @campaign_note.id), notice: "Your note has been updated."
+    begin
+      if @campaign_note.update!(campaign_note_params) && verified_ownership
+        redirect_to campaign_campaign_note_path(campaign_id: @campaign_note.campaign_id, id: @campaign_note.id), notice: "Your note has been updated."
+      end
+    rescue => e
+      flash[:error] = e.message
+      redirect_to :back
     end
   end
 

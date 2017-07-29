@@ -4,7 +4,7 @@
     <%= simple_form_for(@campaign, url: campaign_path, method: :patch, html: { class: 'form-horizontal' }) do |f| %>
       <%= f.input :name %>
       <%= f.input :simulator_url, label: "Simulator URL" %>
-      <%= f.input :next_session, html5: true, input_html: {value: Date.today} %>
+      <%= f.input :next_session, html5: true, input_html: {value: @campaign.next_session.to_date} %>
       <%= f.text_area :description, class: "tinymce", rows: 20, cols: 150 %>
       <div class="row"><%= f.button :submit, "Update", class: "btn-lg submit-button btn-primary" %></div>
     <% end %>

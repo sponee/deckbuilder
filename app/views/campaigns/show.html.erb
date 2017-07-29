@@ -13,8 +13,9 @@
         <%= link_to("Update Campaign", edit_campaign_path(@campaign), method: :get, class: "btn btn-default btn-lg active") %>
       <% end %>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4" style="float:right;">
       <h3>Next Session: <%= @campaign.next_session %></h3>
+      <h3>Simulator URL: <%= @campaign.simulator_url %></h3>
       <H3><%= @campaign.users.count %> Players</h3>
     </div>
   </div>

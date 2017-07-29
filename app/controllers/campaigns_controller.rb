@@ -11,12 +11,15 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-     if @campaign.save
+    begin
+      if @campaign.save!
         CampaignMembership.create!(user_id: @user.id, campaign_id: @campaign.id)
         redirect_to campaign_path(@campaign), notice: "The campaign begins!"
-     else
-        render "new"
-     end
+      end
+    rescue => e
+      flash[:error] = e.message
+      redirect_to :back
+    end
   end
 
   def edit
@@ -29,8 +32,13 @@ class CampaignsController < ApplicationController
 
   def update
     @campaign = Campaign.find(params[:id])
-    if @campaign.update!(campaign_params) && verified_membership
-      redirect_to @campaign, notice: "The campaign has been updated."
+    begin
+      if @campaign.update!(campaign_params) && verified_membership
+        redirect_to @campaign, notice: "The campaign has been updated."
+      end
+    rescue => e
+      flash[:error] = e.message
+      redirect_to :back
     end
   end
 
