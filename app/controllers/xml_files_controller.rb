@@ -16,12 +16,15 @@ class XmlFilesController < ApplicationController
   end
   
   def create
-     @xml_file = @user.xml_files.new(xml_file_params)
-     if @xml_file.save
+    @xml_file = @user.xml_files.new(xml_file_params)
+    begin
+      if @xml_file.save!
         redirect_to xml_files_path, notice: "The xml_file #{@xml_file.name} has been uploaded."
-     else
-        render "new"
-     end
+      end
+    rescue => e
+      flash[:error] = e.message
+      redirect_to :back
+    end
   end
   
   def destroy

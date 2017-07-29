@@ -1,9 +1,11 @@
 <h1>Notes for <%= Campaign.find(params[:campaign_id]).name %></h1>
 <div class="container well">
-<%= @campaign_notes.find_each do |n| %>
+<% @campaign_notes.order("session_date DESC").each do |n| %>
   <div class="well">
-    <p><%= link_to(n.name, campaign_campaign_note_path(id: n.id)) %></p>
-    <p><%= n.content.html_safe %></p>
+    <b><%= n.name %></b>
+    <p><%= n.session_date %></p>
+    <p><%= n.description %></p>
+    <p>link_to(n.name, campaign_campaign_note_path(id: n.id))</p>
   </div>
 <% end %>
 </div>
