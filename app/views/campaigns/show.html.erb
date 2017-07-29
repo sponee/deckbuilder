@@ -21,7 +21,7 @@
   </div>
   <h3>Recent Notes</h3>
   <div class="row">
-    <% @campaign.campaign_notes.first(3).each do |campaign_note| %>
+    <% @campaign.campaign_notes.order("session_date DESC").limit(3).each do |campaign_note| %>
     <div class="col-xs-4">
       <div class="panel panel-default">
         <div class="panel-heading">
