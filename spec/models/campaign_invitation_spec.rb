@@ -18,9 +18,16 @@ RSpec.describe CampaignInvitation, type: :model do
       expect(campaign_invitation.accepted).to be(true)
     end
 
-    it "creates a campaign membership" do
+    it "triggers #create_campaign_membership" do
       expect(campaign_invitation).to receive(:create_campaign_membership)
       campaign_invitation.accept!
+    end
+  end
+
+  describe "triggers #send_invitation after save" do
+    it "sends a campaign_invitation_email" do
+      expect(campaign_invitation).to receive(:send_invitation)
+      campaign_invitation.save!
     end
   end
 end
