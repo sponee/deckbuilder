@@ -4,19 +4,16 @@ class CampaignInvitation < ActiveRecord::Base
   belongs_to :recipient, class_name: "User", foreign_key: "recipient_email"
 
   validates               :sender_id, :recipient_email, :campaign_id, presence: true
-  validates_uniqueness_of :token, scope: [:sender_id, :recipient_email, :campaign_id], allow_nil: true
   validates_uniqueness_of :campaign_id, scope: [:sender_id, :recipient_email]
   validates_uniqueness_of :recipient_email, scope: [:campaign_id]
 
-  before_create :create_token
   after_create :send_invitation
 
   scope :pending_for, -> (email) { where(recipient_email: email, accepted: nil) }
 
   def accept!
     self.accepted = true
-    CampaignMembership.create!(user_id: User.find_by(email: self.recipient_email).id,
-                               campaign_id: self.campaign_id)
+    create_campaign_membership
     save!
   end
 
@@ -27,8 +24,9 @@ class CampaignInvitation < ActiveRecord::Base
 
   private
 
-  def create_token
-    self.token = SecureRandom.urlsafe_base64(nil, false)
+  def create_campaign_membership
+    CampaignMembership.create!(user_id: User.find_by(email: self.recipient_email).id,
+                               campaign_id: self.campaign_id)
   end
 
   def send_invitation

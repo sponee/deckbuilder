@@ -17,7 +17,7 @@ class CampaignNotesController < ApplicationController
     @campaign_note = CampaignNote.new(campaign_note_params)
     begin
       if @campaign_note.save!
-        redirect_to campaign_campaign_note_path(campaign_id: params[:campaign_id], id: @campaign_note.id)
+        redirect_to campaign_campaign_note_path(campaign_id: params[:campaign_id], id: @campaign_note.id), notice: "Your note has been created."
       end
     rescue => e
       flash[:error] = e.message

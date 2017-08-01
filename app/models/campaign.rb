@@ -6,5 +6,5 @@ class Campaign < ActiveRecord::Base
   belongs_to :game_master, foreign_key: "user_id", class_name: "User"
 
   scope :playing_today, -> { where(next_session: Date.today) }
-  validates_presence_of :name
+  validates_presence_of :name, :description, :next_session
 end
