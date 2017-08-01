@@ -4,6 +4,10 @@ RSpec.describe CampaignInvitation, type: :model do
   let!(:campaign_invitation) { build(:campaign_invitation) }
   before { allow(campaign_invitation).to receive(:create_campaign_membership) {nil} }
   before { allow(campaign_invitation).to receive(:send_invitation) {nil} }
+
+  it { should validate_presence_of(:recipient_email) }
+  it { should validate_presence_of(:sender_id) }
+  it { should validate_presence_of(:campaign_id) }
   
   describe "#decline!" do
     it "sets its accepted attribute to false" do
