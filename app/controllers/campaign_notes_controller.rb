@@ -46,6 +46,14 @@ class CampaignNotesController < ApplicationController
   end
 
   def destroy
+    @campaign_note = CampaignNote.find(params[:id])
+    campaign_id = @campaign_note.campaign_id
+    if verified_ownership && @campaign_note.destroy
+      redirect_to campaign_path(campaign_id), notice: "Your note has been destroyed."
+    else
+      redirect_to :back
+      flash[:error] = "That is not your note"
+    end
   end
 
   private

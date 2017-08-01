@@ -4,6 +4,7 @@ CampaignManager::Application.routes.draw do
   post 'pending_invitations_accept', to: "campaign_invitations#accept",  as: :accept_invitation
   post 'pending_invitations_decline', to: "campaign_invitations#decline",  as: :decline_invitation
   get 'campaign_notes/:id/edit', to: "campaign_notes#edit", as: :edit_campaign_note
+  delete 'campaign_notes/:id', to: "campaign_notes#destroy", as: :destroy_campaign_note
 
   authenticated :user do
     match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
