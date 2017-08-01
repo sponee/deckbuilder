@@ -1,17 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe CampaignInvitationsController, type: :controller do
+  let!(:user) { create(:user) }
+  before { sign_in user }
 
-  describe "GET #show" do
+  describe "GET #pending" do
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
+      get :pending
       expect(response).to have_http_status(:success)
     end
   end
