@@ -4,6 +4,6 @@ FactoryGirl.define do
     campaign_id 1
     recipient_email "MyString"
     token "MyString"
-    accepted false
+    accepted nil
   end
 end
