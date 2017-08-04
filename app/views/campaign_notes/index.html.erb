@@ -5,7 +5,7 @@
     <b><%= n.name %></b>
     <p><%= n.session_date %></p>
     <p><%= n.description %></p>
-    <p><%= button_to("Read notes", campaign_campaign_note_path(id: n.id), class: "btn btn-primary") %></p>
+    <p><%= button_to("Read notes", campaign_campaign_note_path(id: n.id), class: "btn btn-primary", method: :get) %></p>
   </div>
 <% end %>
 </div>
