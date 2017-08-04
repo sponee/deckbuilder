@@ -3,6 +3,7 @@ class CampaignInvitation < ActiveRecord::Base
   belongs_to :sender, class_name: "User", foreign_key: "sender_id"
   belongs_to :recipient, class_name: "User", foreign_key: "recipient_email"
 
+  validates               :recipient_email, :email_format => { :message => 'does not look like an email' }
   validates               :sender_id, :recipient_email, :campaign_id, presence: true
   validates_uniqueness_of :campaign_id, scope: [:sender_id, :recipient_email]
   validates_uniqueness_of :recipient_email, scope: [:campaign_id]

@@ -7,9 +7,11 @@ class CampaignInvitationsController < ApplicationController
 
   def create
     @campaign_invitation = CampaignInvitation.new(campaign_invitation_params)
-    if @campaign_invitation.save!
-      redirect_to :back, notice: "Your Invitation has been sent!"
-    else
+    begin
+      if @campaign_invitation.save!
+        redirect_to :back, notice: "Your Invitation has been sent!"
+      end
+    rescue
       redirect_to :back, notice: "Your Invitation could not be sent."
     end
   end
