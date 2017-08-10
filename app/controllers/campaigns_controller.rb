@@ -34,11 +34,11 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     begin
       if @campaign.update!(campaign_params) && verified_membership
-        redirect_to @campaign, notice: "The campaign has been updated."
+        redirect_to campaign_path(@campaign), notice: "The campaign has been updated."
       end
     rescue => e
       flash[:error] = e.message
-      redirect_to :back
+      redirect_to edit_campaign_path(@campaign)
     end
   end
 
