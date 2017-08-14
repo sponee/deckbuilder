@@ -19,6 +19,14 @@
       <H3><%= @campaign.users.count %> Players</h3>
     </div>
   </div>
+  <% @campaign_membership = CampaignMembership.find_by(campaign_id: @campaign.id, user_id: current_user.id) %>
+  <% if @campaign_membership %>
+    <div class="row">
+      <div class="col-xs-4" style="float:right;">
+        <%= subscription_link(@campaign_membership) %>
+      </div>
+    </div>
+  <% end %>
   <h3>Recent Notes</h3>
   <div class="row">
     <% @campaign.campaign_notes.order("session_date DESC").limit(3).each do |campaign_note| %>

@@ -4,4 +4,8 @@ class CampaignMembership < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, scope: :campaign_id
   validates_presence_of :user_id, :campaign_id
+
+  def subscribed?
+    receive_notifications?
+  end
 end
