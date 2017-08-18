@@ -1,6 +1,8 @@
 class XmlFilesController < ApplicationController
   before_action :authenticate_user!
 
+  add_breadcrumb "decks", :xml_files_path
+
   def download
     @xml_file = XmlFile.find(params[:xml_file_id])
     send_data(@xml_file.attachment.read, disposition: "attachment", filename: @xml_file.name)

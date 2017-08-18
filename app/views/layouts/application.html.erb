@@ -9,6 +9,11 @@
    </head>
    <%= render 'layouts/header' %>
    <body>
+    <div class="container" style="padding-top:15px">
+    <ol class="breadcrumb">
+      <%= render_breadcrumbs :tag => :li, :separator => "" %>
+    </ol>
+    </div>
       <div class = "container">
          <% flash.each do |key, value| %>
            <div id="alert" class="alert alert-info">

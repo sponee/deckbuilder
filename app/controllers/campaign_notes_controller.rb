@@ -3,14 +3,18 @@ class CampaignNotesController < ApplicationController
 
   def show
     @campaign_note = CampaignNote.find(params[:id])
+    add_breadcrumb @campaign_note.campaign.name, campaign_path(@campaign_note.campaign.id)
   end
 
   def index
     @campaign_notes = CampaignNote.where(campaign_id: params[:campaign_id])
+    add_breadcrumb @campaign_note.campaign.name, campaign_path(@campaign_note.campaign.id)
+    add_breadcrumb "notes", campaign_campaign_notes_path(@campaign_note.campaign.id)
   end
 
   def new
     @campagin_note = @user.campaign_notes.new
+    add_breadcrumb
   end
 
   def create
