@@ -1,5 +1,5 @@
-<h1>Notes for <%= Campaign.find(params[:campaign_id]).name %></h1>
 <div class="container well">
+<h1>Notes for <%= Campaign.find(params[:campaign_id]).name %></h1>
 <% @campaign_notes.order("session_date DESC").each do |n| %>
   <div class="well">
     <b><%= n.name %></b>

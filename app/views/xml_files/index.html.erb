@@ -1,6 +1,5 @@
-<h3>New HeroLab File</h3>
-
 <div class = "well">
+  <h3>New HeroLab File</h3>
   <%= simple_form_for :xml_file, html: { multipart: true, class: 'form-horizontal' } do |f| %>
     <%= f.input :name, as: :string %>
     <div class="row"><%= f.file_field :attachment %></div>
@@ -8,8 +7,8 @@
   <% end %>
 </div>
 
-<h3>My HeroLab Files</h3>
 <div class = "well">
+  <h3>My HeroLab Files</h3>
   <table class="table table-bordered table-striped" data-turbolinks="false">
     <thead>
       <tr>

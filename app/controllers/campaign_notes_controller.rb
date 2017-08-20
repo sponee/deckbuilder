@@ -8,13 +8,16 @@ class CampaignNotesController < ApplicationController
 
   def index
     @campaign_notes = CampaignNote.where(campaign_id: params[:campaign_id])
-    add_breadcrumb @campaign_note.campaign.name, campaign_path(@campaign_note.campaign.id)
-    add_breadcrumb "notes", campaign_campaign_notes_path(@campaign_note.campaign.id)
+    campaign = Campaign.find(params[:campaign_id])
+    add_breadcrumb campaign.name, campaign_path(campaign.id)
+    add_breadcrumb "notes", campaign_campaign_notes_path(campaign.id)
   end
 
   def new
     @campagin_note = @user.campaign_notes.new
-    add_breadcrumb
+    campaign = Campaign.find(params[:campaign_id])
+    add_breadcrumb campaign.name, campaign_path(campaign.id)
+    add_breadcrumb "notes", campaign_campaign_notes_path(campaign.id)
   end
 
   def create
@@ -43,6 +46,9 @@ class CampaignNotesController < ApplicationController
 
   def edit
     @campaign_note = CampaignNote.find(params[:id])
+    campaign = Campaign.find(@campaign_note.campaign_id)
+    add_breadcrumb campaign.name, campaign_path(campaign.id)
+    add_breadcrumb "notes", campaign_campaign_notes_path(campaign.id)
     if verified_ownership
     else
       redirect_to campaign_campaign_note_path(campaign_id:@campaign_note.id, id: @campaign_note.id), notice: "Those aren't your notes."
