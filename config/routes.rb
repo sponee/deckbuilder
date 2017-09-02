@@ -1,4 +1,5 @@
 CampaignManager::Application.routes.draw do
+  resources :characters
   get 'welcome/index'
   get 'pending_invitations', to: "campaign_invitations#pending",  as: :pending_invitations
   post 'pending_invitations_accept', to: "campaign_invitations#accept",  as: :accept_invitation
@@ -18,6 +19,7 @@ CampaignManager::Application.routes.draw do
   resources :xml_files do get 'download', :user end
   resources :pathfinder_decks do get 'download', :user end
   resources :charges
+  resources :characters
   resources :campaign_invitations
   post "xml_files" => "xml_files#create_deck"
   root "welcome#index"
