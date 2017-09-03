@@ -4,17 +4,24 @@ class CharactersController < ApplicationController
   before_action :set_s3_client, only: [:download]
 
   def index
+    add_breadcrumb "characters", :characters_path
     @characters = @user.characters
   end
 
   def show
+    add_breadcrumb "characters", :characters_path
+    add_breadcrumb @character.name
   end
 
   def new
+    add_breadcrumb "characters", :characters_path
     @character = @user.characters.new
   end
 
   def edit
+    add_breadcrumb "characters", :characters_path
+    add_breadcrumb @character.name, :character_path
+    add_breadcrumb "edit" 
     if verified_membership
     else
       redirect_to characters_path, notice: "That isn't your character."
