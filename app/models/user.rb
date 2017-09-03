@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def characters_not_playing(campaign_id)
+    self.characters.where.not(id: CharacterCampaignMembership.where(campaign_id: campaign_id).pluck(:character_id))
+  end
 end

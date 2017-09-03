@@ -20,6 +20,7 @@ CampaignManager::Application.routes.draw do
   resources :charges
   resources :characters do get 'download', :user end
   resources :campaign_invitations
+  resources :character_campaign_memberships
   post "xml_files" => "xml_files#create_deck"
   root "welcome#index"
  end
