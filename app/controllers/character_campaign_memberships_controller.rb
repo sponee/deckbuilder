@@ -1,5 +1,4 @@
 class CharacterCampaignMembershipsController < ApplicationController
-  before_action :set_character, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :set_s3_client, only: [:download]
 
@@ -8,19 +7,20 @@ class CharacterCampaignMembershipsController < ApplicationController
 
     respond_to do |format|
       if @character_campaign_membership.save!
-        format.html { redirect_to campaign_path(campaign_id: @character_campaign_membership.campaign_id), notice: 'Character joined the campaign.' }
-        format.json { render :show, status: :created, location: @character }
+        format.html { redirect_to campaign_path(id: @character_campaign_membership.campaign_id), notice: 'Character joined the campaign.' }
+        format.json { render :show, status: :created, location: @character_campaign_membership.campaign_id }
       else
         format.html { render :new }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
+        format.json { render json: @character_campaign_membership.campaign_id.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @character.destroy
+    @character_campaign_membership = CharacterCampaignMembership.find_by(campaign_id: params[:campaign_id], character_id: params[:character_id])
+    @character_campaign_membership.destroy
     respond_to do |format|
-      format.html { redirect_to characters_url, notice: 'Character left the campaign.' }
+      format.html { redirect_to :back, notice: 'Character left the campaign.' }
       format.json { head :no_content }
     end
   end
