@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_s3_client, only: [:download]
 
   def index
     @characters = @user.characters
@@ -60,6 +61,13 @@ class CharactersController < ApplicationController
     else
       redirect_to characters_path, notice: "That isn't your character."
     end
+  end
+
+  def download
+    @character = Character.find(params[:character_id])
+    s3 = Aws::S3::Resource.new(region:ENV["REGION"])
+    obj = s3.bucket(ENV["AWS_BUCKET"]).object(@character.attachment.path)
+    redirect_to @character.attachment.url
   end
 
   private

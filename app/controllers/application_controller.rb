@@ -13,4 +13,11 @@ class ApplicationController < ActionController::Base
   def set_user
     @user = current_user
   end
+
+  def set_s3_client
+    Aws.config.update({
+      region: ENV["REGION"],
+      credentials: Aws::Credentials.new(ENV["AWS_ACCESS_KEY"], ENV["AWS_SECRET_KEY"])
+    })
+  end
 end

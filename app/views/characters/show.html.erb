@@ -10,5 +10,7 @@
   <%= @character.user_id %>
 </p>
 
+<%= link_to 'Download Character', character_download_path(character_id: @character.id), target: '_blank' %>
+
 <%= link_to 'Edit', edit_character_path(@character) %> |
 <%= link_to 'Back', characters_path %>

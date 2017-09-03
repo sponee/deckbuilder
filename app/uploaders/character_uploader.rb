@@ -12,9 +12,9 @@ class CharacterUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     if Rails.env.production?
-      "#{model.class.to_s.underscore}s/#{mounted_as}/#{model.user_id}"
+      "#{model.class.to_s.underscore}s/#{model.user_id}"
     else
-      "test/#{model.class.to_s.underscore}s/#{mounted_as}/#{model.user_id}"
+      "test/#{model.class.to_s.underscore}s/#{model.user_id}"
     end
   end
 

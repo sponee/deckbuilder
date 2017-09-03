@@ -21,11 +21,4 @@ class PathfinderDecksController < ApplicationController
   def set_deck
     @deck = PathfinderDeck.find(params[:pathfinder_deck_id]) 
   end
-
-  def set_s3_client
-    Aws.config.update({
-      region: ENV["REGION"],
-      credentials: Aws::Credentials.new(ENV["AWS_ACCESS_KEY"], ENV["AWS_SECRET_KEY"])
-    })
-  end
 end
