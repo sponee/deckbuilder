@@ -2,6 +2,7 @@ class CampaignsController < ApplicationController
   before_action :authenticate_user!, :pending_invitations
 
   def show
+    set_user
     @campaign = Campaign.find(params[:id])
     add_breadcrumb "campaigns", :campaigns_path
     add_breadcrumb @campaign.name, :campaign_path

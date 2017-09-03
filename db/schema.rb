@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170902000911) do
+ActiveRecord::Schema.define(version: 20170903222724) do
 
   create_table "campaign_invitations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -50,6 +50,13 @@ ActiveRecord::Schema.define(version: 20170902000911) do
     t.datetime "updated_at",    null: false
     t.date     "next_session"
     t.integer  "user_id"
+  end
+
+  create_table "character_campaign_memberships", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "campaign_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "characters", force: :cascade do |t|
