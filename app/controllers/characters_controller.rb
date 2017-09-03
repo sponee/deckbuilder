@@ -3,7 +3,7 @@ class CharactersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @characters = Character.all
+    @characters = @user.characters
   end
 
   def show
@@ -14,6 +14,10 @@ class CharactersController < ApplicationController
   end
 
   def edit
+    if verified_membership
+    else
+      redirect_to characters_path, notice: "That isn't your character."
+    end
   end
 
   def create
@@ -31,26 +35,39 @@ class CharactersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @character.update(character_params)
-        format.html { redirect_to @character, notice: 'Character was successfully updated.' }
-        format.json { render :show, status: :ok, location: @character }
-      else
-        format.html { render :edit }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
+    if verified_membership
+      respond_to do |format|
+        if @character.update(character_params)
+          format.html { redirect_to @character, notice: 'Character was successfully updated.' }
+          format.json { render :show, status: :ok, location: @character }
+        else
+          format.html { render :edit }
+          format.json { render json: @character.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to characters_path, notice: "That isn't your character."
     end
   end
 
   def destroy
-    @character.destroy
-    respond_to do |format|
-      format.html { redirect_to characters_url, notice: 'Character was successfully destroyed.' }
-      format.json { head :no_content }
+    if verified_membership
+      @character.destroy
+      respond_to do |format|
+        format.html { redirect_to characters_url, notice: 'Character was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to characters_path, notice: "That isn't your character."
     end
   end
 
   private
+
+    def verified_membership
+      Character.find_by(id: params[:id], user_id: @user.id)
+    end
+
     def set_character
       @character = Character.find(params[:id])
     end
