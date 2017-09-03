@@ -1,5 +1,4 @@
 CampaignManager::Application.routes.draw do
-  resources :characters
   get 'welcome/index'
   get 'pending_invitations', to: "campaign_invitations#pending",  as: :pending_invitations
   post 'pending_invitations_accept', to: "campaign_invitations#accept",  as: :accept_invitation
