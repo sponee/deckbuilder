@@ -1,0 +1,26 @@
+<div class="container-fluid">
+</div>
+<div class="well">
+<h2>My Characters</h2>
+<% @characters.each_slice(3) do |characters| %>
+  <div class="container-fluid">
+    <div class="row">
+      <% characters.each do |character| %>
+        <div class="col-xs-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= character.name %></h3>
+            </div>
+            <div class="panel-body">
+              <span><%= link_to("View", character_path(id: character.id)) %>
+                  | <%= link_to("Update", edit_character_path(character.id)) %>
+                  | <%= link_to("Delete", character_path(character.id), method: :delete) %>
+                  |  <%= link_to("Download", character_download_path(character.id), target: "_blank") %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

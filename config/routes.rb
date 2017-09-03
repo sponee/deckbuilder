@@ -18,6 +18,7 @@ CampaignManager::Application.routes.draw do
   resources :xml_files do get 'download', :user end
   resources :pathfinder_decks do get 'download', :user end
   resources :charges
+  resources :characters do get 'download', :user end
   resources :campaign_invitations
   post "xml_files" => "xml_files#create_deck"
   root "welcome#index"
