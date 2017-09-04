@@ -14,7 +14,7 @@ class Character < ActiveRecord::Base
     if ability_score
       score = ((ability_score - 10) / 2).round
       if score > 0
-        score = "+ " + score.to_s
+        score = "+" + score.to_s
       end
     else
       score = "N/A"
