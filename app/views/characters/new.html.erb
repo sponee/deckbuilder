@@ -1,14 +1,35 @@
-<h1>New Character</h1>
-
-<div class = "well">
-   <%= form_for [@character], html: { multipart: true } do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :attachment %>
+<div class="form-inputs">
+  <div class="form-well well">
+    <h1>New Character</h1>
+    <%= simple_form_for(:character, url: :characters,  html: { class: 'form-vertical' }) do |f| %>
+      <%= f.input :name %>
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.input :strength, as: :integer, placeholder: '10' %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :dexterity, as: :integer, placeholder: '10' %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :constitution, as: :integer, placeholder: '10' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.input :intelligence, as: :integer, placeholder: '10' %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :wisdom, as: :integer, placeholder: '10' %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :charisma, as: :integer, placeholder: '10' %>
+        </div>
+      </div>
       <%= f.file_field :attachment %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
-   <% end %>
-   <p><%= link_to "Cancel", characters_path(current_user) %>
+      <%= f.button :submit, "Save", class: "btn-lg submit-button btn-primary" %>
+    <% end %>
+    </div>
+  </div>
 </div>
 
-<%= link_to 'Back', characters_path %>
+<%= tinymce %>

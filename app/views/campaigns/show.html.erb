@@ -30,6 +30,52 @@
                 <h3 class="panel-title"><%= character.name %></h3>
               </div>
               <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div align="center">
+                <b>STR
+                <%= character.ability_score_modifier(character.strength) %></b>
+                <p><%= character.strength %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>DEX
+                <%= character.ability_score_modifier(character.dexterity) %></b>
+                <p><%= character.dexterity %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>CON
+                <%= character.ability_score_modifier(character.constitution) %></b>
+                <p><%= character.constitution %></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div align="center">
+                <b>INT
+                <%= character.ability_score_modifier(character.intelligence) %></b>
+                <p><%= character.intelligence %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>WIS
+                <%= character.ability_score_modifier(character.wisdom) %></b>
+                <p><%= character.wisdom %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>CHA
+                <%= character.ability_score_modifier(character.charisma) %></b>
+                <p><%= character.charisma %></p>
+              </div>
+            </div>
+          </div>
                 <%= link_to 'Download Character', character_download_path(character_id: character.id), target: '_blank' %>
                  | <%= link_to 'Remove from Campaign', character_campaign_membership_path(character_id: character.id, campaign_id: @campaign.id), method: 'delete' %>
               </div>

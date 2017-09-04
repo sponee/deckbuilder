@@ -1,18 +1,58 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid well">
+<h1><%= @character.name %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @character.name %>
-</p>
+  <div class="row">
+    <div class="col-sm-4">
+      <div align="center">
+        <b>STR
+        <%= @character.ability_score_modifier(@character.strength) %></b>
+        <p><%= @character.strength %></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <b>DEX</b>
+        <%= @character.ability_score_modifier(@character.dexterity) %>
+        <p><%= @character.dexterity %></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <b>CON</b>
+        <%= @character.ability_score_modifier(@character.constitution) %>
+        <p><%= @character.constitution %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div align="center">
+        <b>INT</b>
+        <%= @character.ability_score_modifier(@character.intelligence) %>
+        <p><%= @character.intelligence %></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <b>WIS</b>
+        <%= @character.ability_score_modifier(@character.wisdom) %>
+        <p><%= @character.wisdom %></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <b>CHA</b>
+        <%= @character.ability_score_modifier(@character.charisma) %>
+        <p><%= @character.charisma %></p>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @character.user_id %>
-</p>
+  <%= link_to 'Download Character', character_download_path(character_id: @character.id), target: '_blank' %>
 
-<%= link_to 'Download Character', character_download_path(character_id: @character.id), target: '_blank' %>
+  <%= link_to 'Edit', edit_character_path(@character) %> |
+  <%= link_to 'Back', characters_path %>
 
-<%= link_to 'Edit', edit_character_path(@character) %> |
-<%= link_to 'Back', characters_path %>
+  <%= render 'character_campaign_memberships/create_form' %>
 
-<%= render 'character_campaign_memberships/create_form' %>
+</div>

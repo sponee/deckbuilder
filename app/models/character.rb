@@ -9,4 +9,16 @@ class Character < ActiveRecord::Base
   def not_playing
     self.user.campaigns - self.campaigns
   end
+
+  def ability_score_modifier(ability_score)
+    if ability_score
+      score = ((ability_score - 10) / 2).round
+      if score > 0
+        score = "+ " + score.to_s
+      end
+    else
+      score = "N/A"
+    end
+    score
+  end
 end
