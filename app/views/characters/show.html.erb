@@ -4,51 +4,53 @@
   <div class="row">
     <div class="col-sm-4">
       <div align="center">
-        <b>STR
-        <%= @character.ability_score_modifier(@character.strength) %></b>
-        <p><%= @character.strength %></p>
+        <h4>STR
+        <%= @character.ability_score_modifier(@character.strength) %>
+        <p><%= @character.strength %></p></h4>
       </div>
     </div>
     <div class="col-sm-4">
       <div align="center">
-        <b>DEX
+        <h4>DEX
         <%= @character.ability_score_modifier(@character.dexterity) %></b>
-        <p><%= @character.dexterity %></p>
+        <p><%= @character.dexterity %></p></h4>
       </div>
     </div>
     <div class="col-sm-4">
       <div align="center">
-        <b>CON</b>
+        <h4>CON
         <%= @character.ability_score_modifier(@character.constitution) %></b>
-        <p><%= @character.constitution %></p>
+        <p><%= @character.constitution %></p></h4>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-4">
       <div align="center">
-        <b>INT
-        <%= @character.ability_score_modifier(@character.intelligence) %></b>
-        <p><%= @character.intelligence %></p>
+        <h4>INT
+        <%= @character.ability_score_modifier(@character.intelligence) %>
+        <p><%= @character.intelligence %></p></h4>
       </div>
     </div>
     <div class="col-sm-4">
       <div align="center">
-        <b>WIS
+        <h4>WIS
         <%= @character.ability_score_modifier(@character.wisdom) %></b>
-        <p><%= @character.wisdom %></p>
+        <p><%= @character.wisdom %></p></h4>
       </div>
     </div>
     <div class="col-sm-4">
       <div align="center">
-        <b>CHA
+        <h4>CHA
         <%= @character.ability_score_modifier(@character.charisma) %></b>
-        <p><%= @character.charisma %></p>
+        <p><%= @character.charisma %></p></h4>
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
-    <h3>Add <%= @character.name %> to a Campaign</h3>
-    <%= render 'character_campaign_memberships/create_form' %>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Add <%= @character.name %> to a Campaign</h3>
+      <%= render 'character_campaign_memberships/create_form' %>
+    </div>
   </div>
 </div>
