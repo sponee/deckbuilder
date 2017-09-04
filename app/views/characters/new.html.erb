@@ -25,8 +25,8 @@
           <%= f.input :charisma, as: :integer, placeholder: '10' %>
         </div>
       </div>
-      <h4>Character Sheet</h4>
-      <%= f.file_field :attachment %>
+      <h4>*Character Sheet</h4>
+      <%= f.file_field :attachment, required: :true %>
       <br />
       <%= f.button :submit, "Save", class: "btn-lg submit-button btn-primary" %>
     <% end %>
