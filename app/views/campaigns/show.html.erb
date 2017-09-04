@@ -15,7 +15,7 @@
     </div>
     <div class="col-xs-4" style="float:right;">
       <h3>Next Session: <%= @campaign.next_session %></h3>
-      <h3>Simulator URL: <%= link_to(@campaign.name, @campaign.simulator_url) %></h3>
+      <h3>Simulator URL: <%= link_to(@campaign.name, @campaign.simulator_url, target: '_blank') %></h3>
     </div>
   </div>
 
