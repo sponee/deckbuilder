@@ -47,12 +47,8 @@
       </div>
     </div>
   </div>
-
-  <%= link_to 'Download Character', character_download_path(character_id: @character.id), target: '_blank' %>
-
-  <%= link_to 'Edit', edit_character_path(@character) %> |
-  <%= link_to 'Back', characters_path %>
-
-  <%= render 'character_campaign_memberships/create_form' %>
-
+  <div class="col-sm-6">
+    <h3>Add <%= @character.name %> to a Campaign</h3>
+    <%= render 'character_campaign_memberships/create_form' %>
+  </div>
 </div>
