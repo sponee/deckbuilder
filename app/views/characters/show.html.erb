@@ -1,0 +1,56 @@
+<div class="container-fluid well">
+<h1><%= @character.name %></h1>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div align="center">
+        <h4>STR
+        <%= @character.ability_score_modifier(@character.strength) %>
+        <p><%= @character.strength %></p></h4>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <h4>DEX
+        <%= @character.ability_score_modifier(@character.dexterity) %></b>
+        <p><%= @character.dexterity %></p></h4>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <h4>CON
+        <%= @character.ability_score_modifier(@character.constitution) %></b>
+        <p><%= @character.constitution %></p></h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div align="center">
+        <h4>INT
+        <%= @character.ability_score_modifier(@character.intelligence) %>
+        <p><%= @character.intelligence %></p></h4>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <h4>WIS
+        <%= @character.ability_score_modifier(@character.wisdom) %></b>
+        <p><%= @character.wisdom %></p></h4>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div align="center">
+        <h4>CHA
+        <%= @character.ability_score_modifier(@character.charisma) %></b>
+        <p><%= @character.charisma %></p></h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Add <%= @character.name %> to a Campaign</h3>
+      <%= render 'character_campaign_memberships/create_form' %>
+    </div>
+  </div>
+</div>

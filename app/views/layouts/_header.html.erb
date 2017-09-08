@@ -6,12 +6,34 @@
         <% if @user.nil? %>
           <li role="presentation"><%= link_to 'Log In', new_user_session_path %></li>
         <% elsif @user && @user.id != nil %>
-          <li role="presentation"><%= link_to 'My Decks', xml_files_path %></h2></li>
-          <li role="presentation"><%= link_to 'My Campaigns', campaigns_path %></h2></li>
-          <li role="presentation"><a href="https://sponee.github.io/generator/generate.html" target="_blank">Generate Cards</a></li>
-          <li role="presentation"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></h2></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Campaigns <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href=<%= "#{campaigns_path}" %>>Campaigns</a></li>
+            <li><a href=<%= "#{new_campaign_path}" %>>New Campaign</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Characters <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href=<%= "#{characters_path}" %>>Characters</a></li>
+            <li><a href=<%= "#{new_character_path}" %>>New Character</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Decks <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href=<%= "#{xml_files_path}" %>>Decks</a></li>
+            <li><a href="https://sponee.github.io/generator/generate.html">Generate Cards</a></li>
+          </ul>
+        </li>
+          <li role="presentation"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></li>
         <% end %>
       </ul>
     </div>
   </div>
 </header>
+
+<script>
+   $('.dropdown-toggle').dropdown()
+</script>

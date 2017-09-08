@@ -1,7 +1,7 @@
-<h1><%= @campaign.name %></h1>
 <div class="container-fluid well">
   <div class="row">
     <div class="col-xs-8">
+      <h1><%= @campaign.name %></h1>
       <%= @campaign.description.html_safe %>
     </div>
     <div class="col-xs-4">
@@ -15,10 +15,10 @@
     </div>
     <div class="col-xs-4" style="float:right;">
       <h3>Next Session: <%= @campaign.next_session %></h3>
-      <h3>Simulator URL: <%= link_to(@campaign.name, @campaign.simulator_url) %></h3>
-      <H3><%= @campaign.users.count %> Players</h3>
+      <h3>Simulator URL: <%= link_to(@campaign.name, @campaign.simulator_url, target: '_blank') %></h3>
     </div>
   </div>
+
   <% @campaign_membership = CampaignMembership.find_by(campaign_id: @campaign.id, user_id: current_user.id) %>
   <% if @campaign_membership %>
     <div class="row">
@@ -27,6 +27,89 @@
       </div>
     </div>
   <% end %>
+
+  <% unless @campaign.characters.empty? %>
+    <h3>Characters</h3>
+      <% @campaign.characters.each_slice(3) do |characters| %>
+        <div class="row">
+          <% characters.each do |character| %>
+          <div class="col-xs-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= character.name %></h3>
+              </div>
+              <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div align="center">
+                <b>STR
+                <%= character.ability_score_modifier(character.strength) %></b>
+                <p><%= character.strength %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>DEX
+                <%= character.ability_score_modifier(character.dexterity) %></b>
+                <p><%= character.dexterity %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>CON
+                <%= character.ability_score_modifier(character.constitution) %></b>
+                <p><%= character.constitution %></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div align="center">
+                <b>INT
+                <%= character.ability_score_modifier(character.intelligence) %></b>
+                <p><%= character.intelligence %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>WIS
+                <%= character.ability_score_modifier(character.wisdom) %></b>
+                <p><%= character.wisdom %></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div align="center">
+                <b>CHA
+                <%= character.ability_score_modifier(character.charisma) %></b>
+                <p><%= character.charisma %></p>
+              </div>
+            </div>
+          </div>
+                <%= link_to 'Download Character', character_download_path(character_id: character.id), target: '_blank' %>
+                 | <%= link_to 'Remove from Campaign', character_campaign_membership_path(character_id: character.id, campaign_id: @campaign.id), method: 'delete' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <h3>Add a Character</h3>
+      <div class="form-inputs">
+        <div class="form-well well">
+          <%= simple_form_for :character_campaign_membership, url: character_campaign_memberships_path, method: :post, html: { multipart: true, class: 'form-horizontal' } do |f| %>
+          <%= f.input :character_id, collection: @user.characters_not_playing(@campaign.id), required: :true %>
+          <%= f.hidden_field :campaign_id, value: @campaign.id %>
+          <div class="row" style="padding-top:15px;"><%= f.submit "Join Campaign", class: "btn btn-primary" %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <h3>Recent Notes</h3>
   <div class="row">
     <% @campaign.campaign_notes.order("session_date DESC").limit(3).each do |campaign_note| %>

@@ -2,10 +2,15 @@ class CampaignsController < ApplicationController
   before_action :authenticate_user!, :pending_invitations
 
   def show
+    set_user
     @campaign = Campaign.find(params[:id])
+    add_breadcrumb "campaigns", :campaigns_path
+    add_breadcrumb @campaign.name, :campaign_path
   end
 
   def new
+    add_breadcrumb "campaigns", :campaigns_path
+    add_breadcrumb "new campaign", :new_campaign_path
     @campaign = @user.campaigns.new
   end
 
@@ -25,6 +30,9 @@ class CampaignsController < ApplicationController
   def edit
     if verified_membership
       @campaign = Campaign.find(params[:id])
+      add_breadcrumb "campaigns", :campaigns_path
+      add_breadcrumb @campaign.name, :campaign_path
+      add_breadcrumb "edit #{@campaign.name}", :edit_campaign_path
     else
       redirect_to campaigns_path, notice: "That isn't your campaign."
     end
@@ -34,11 +42,11 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     begin
       if @campaign.update!(campaign_params) && verified_membership
-        redirect_to @campaign, notice: "The campaign has been updated."
+        redirect_to campaign_path(@campaign), notice: "The campaign has been updated."
       end
     rescue => e
       flash[:error] = e.message
-      redirect_to :back
+      redirect_to edit_campaign_path(@campaign)
     end
   end
 
@@ -53,6 +61,7 @@ class CampaignsController < ApplicationController
   end
 
   def index
+    add_breadcrumb "campaigns", :campaigns_path
     @campaigns = @user.campaigns
   end
 

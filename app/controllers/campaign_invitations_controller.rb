@@ -2,6 +2,7 @@ class CampaignInvitationsController < ApplicationController
   before_action :authenticate_user!
 
   def pending
+    add_breadcrumb "invitations", pending_invitations_path(@user.id)
     @campaign_invitations = CampaignInvitation.pending_for(@user.email)
   end
 

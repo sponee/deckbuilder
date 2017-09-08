@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe "campaign_notes/create.html.erb", type: :view do
+RSpec.describe CharacterCampaignMembership, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

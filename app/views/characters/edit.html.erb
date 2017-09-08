@@ -1,0 +1,37 @@
+<div class="form-inputs">
+  <div class="form-well well">
+    <h1><%= @character.name %></h1>
+    <%= simple_form_for(@character, url: :character,  html: { class: 'form-vertical' }) do |f| %>
+      <%= f.input :name %>
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.input :strength, as: :integer %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :dexterity, as: :integer %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :constitution, as: :integer %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.input :intelligence, as: :integer %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :wisdom, as: :integer %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :charisma, as: :integer %>
+        </div>
+      </div>
+      <h4>Character Sheet</h4>
+      <%= f.file_field :attachment %>
+      <br />
+      <%= f.button :submit, "Save", class: "btn-lg submit-button btn-primary" %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<%= tinymce %>

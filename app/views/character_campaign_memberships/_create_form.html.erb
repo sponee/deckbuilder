@@ -1,0 +1,9 @@
+<div class="form-inputs">
+<div class="form-well well">
+ <%= simple_form_for :character_campaign_membership, url: character_campaign_memberships_path, method: :post, html: { multipart: true, class: 'form-horizontal' } do |f| %>
+    <%= f.input :campaign_id, collection: @character.not_playing, required: :true %>
+    <%= f.hidden_field :character_id, value: @character.id %>
+    <div class="row" style="padding-top:15px;"><%= f.submit "Join Campaign", class: "btn btn-primary" %></div>
+ <% end %>
+ </div>
+</div>
