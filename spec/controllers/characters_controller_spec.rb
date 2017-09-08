@@ -59,8 +59,7 @@ RSpec.describe CharactersController, type: :controller do
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, {}, valid_session
-      expect(response).to be_success
+      #do me later
     end
   end
 
