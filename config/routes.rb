@@ -16,6 +16,9 @@ CampaignManager::Application.routes.draw do
   resources :campaigns do
     resources :campaign_notes
   end
+
+  patch 'roll_die' => 'campaigns#roll'
+
   resources :xml_files do get 'download', :user end
   resources :pathfinder_decks do get 'download', :user end
   resources :charges

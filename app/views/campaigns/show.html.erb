@@ -110,6 +110,11 @@
     </div>
   </div>
 
+
+  <div class="col-xs-4" style="float:right;">
+    <%= link_to 'Roll a d20', roll_die_path, remote: true, method: :patch, class: "btn btn-default btn-lg active" %>
+  </div>
+
   <h3>Recent Notes</h3>
   <div class="row">
     <% @campaign.campaign_notes.order("session_date DESC").limit(3).each do |campaign_note| %>

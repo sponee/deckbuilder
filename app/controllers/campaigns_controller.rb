@@ -65,6 +65,10 @@ class CampaignsController < ApplicationController
     @campaigns = @user.campaigns
   end
 
+  def roll
+    render js: "alert('The number is: #{Random.new.rand(1..20)}')"
+  end 
+
   private
 
   def pending_invitations
