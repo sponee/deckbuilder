@@ -5,11 +5,10 @@ class CampaignMembershipsController < ApplicationController
     @campaign_membership = CampaignMembership.find(params[:campaign_membership][:id])
     begin
       if @campaign_membership.update!(campaign_membership_params) && verified_membership(@campaign_membership)
-        redirect_to :back, notice: "Your subscription has been updated."
+        redirect_back(fallback_location: root_url, notice: "Your subscription has been updated.")
       end
     rescue => e
-      flash[:notice] = "Something went wrong!"
-      redirect_to :back
+      redirect_back(fallback_location: root_url, notice: "Something went wrong!")
     end
   end
 

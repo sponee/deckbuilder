@@ -10,21 +10,21 @@ RSpec.describe CampaignsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
-      get :index, {campaign_id: 1}
+      get :index, params: {campaign_id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #new" do
     it "returns http success" do
-      get :new, {campaign_id: 1}
+      get :new, params: {campaign_id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "POST #create" do
     it "returns http success" do
-      post :create, {campaign: {user_id: user.id, description: "descriptive", name: "name", next_session: "2017-01-01" }}
+      post :create, params: {campaign: {user_id: user.id, description: "descriptive", name: "name", next_session: "2017-01-01" }}
       expect(flash[:notice]).to eq("The campaign begins!")
     end
   end
@@ -32,7 +32,7 @@ RSpec.describe CampaignsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       it "returns http redirect" do
-        put :update, {id: campaign.id, campaign: {name: "updated name"}}
+        put :update, params: {id: campaign.id, campaign: {name: "updated name"}}
 
         expect(response).to have_http_status(:redirect)
         expect(flash[:notice]).to eq("The campaign has been updated.")
@@ -41,7 +41,7 @@ RSpec.describe CampaignsController, type: :controller do
 
     context "with invalid params" do
       it "returns http redirect" do
-        put :update, {id: campaign.id, campaign: {name: ""}}
+        put :update, params: {id: campaign.id, campaign: {name: ""}}
 
         expect(response).to have_http_status(:redirect)
         expect(flash[:error]).to include("Validation failed")
@@ -51,14 +51,14 @@ RSpec.describe CampaignsController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit, {id: campaign.id}
+      get :edit, params: {id: campaign.id}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "POST #destroy" do
     it "returns http success" do
-      delete :destroy, {id: campaign.id}
+      delete :destroy, params: {id: campaign.id}
       expect(flash[:notice]).to eq("The campaign is over.")
     end
   end

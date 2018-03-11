@@ -31,7 +31,7 @@ RSpec.describe CampaignInvitation, type: :model do
 
   describe "after create" do
     it "sends a campaign_invitation_email" do
-      expect_any_instance_of(CampaignInvitationMailer).to receive(:campaign_invitation_email)
+      expect(campaign_invitation).to receive(:send_invitation)
       campaign_invitation.save!
     end
   end

@@ -10,10 +10,10 @@ class CampaignInvitationsController < ApplicationController
     @campaign_invitation = CampaignInvitation.new(campaign_invitation_params)
     begin
       if @campaign_invitation.save!
-        redirect_to :back, notice: "Your Invitation has been sent!"
+        redirect_back(fallback_location: root_url, notice: "Your Invitation has been sent!")
       end
     rescue
-      redirect_to :back, notice: "Your Invitation could not be sent."
+      redirect_back(fallback_location: root_url, notice: "Your Invitation could not be sent.")
     end
   end
 

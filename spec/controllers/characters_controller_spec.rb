@@ -44,7 +44,7 @@ RSpec.describe CharactersController, type: :controller do
   describe "GET #index" do
     it "returns a success response" do
       character = Character.create! valid_attributes
-      get :index, {}, valid_session
+      get :index
       expect(response).to be_success
     end
   end
