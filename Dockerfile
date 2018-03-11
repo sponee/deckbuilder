@@ -1,4 +1,4 @@
-FROM ruby:2.2.5
+FROM ruby:2.3.0
 MAINTAINER Kyle Sponheim kyle.sponheim@gmail.com
 
 
