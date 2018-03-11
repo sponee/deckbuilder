@@ -25,7 +25,7 @@ class XmlFilesController < ApplicationController
       end
     rescue => e
       flash[:error] = e.message
-      redirect_to :back
+      redirect_back(fallback_location: root_url)
     end
   end
   

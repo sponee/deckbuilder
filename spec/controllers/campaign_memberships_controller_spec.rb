@@ -10,7 +10,7 @@ RSpec.describe CampaignMembershipsController, type: :controller do
 
   describe "PATCH #update" do
     it "returns http redirect" do
-      put :update, {campaign_membership: {id: campaign_membership.id, receive_notifications: false}}
+      put :update, params: {campaign_membership: {id: campaign_membership.id, receive_notifications: false}}
 
       expect(response).to have_http_status(:redirect)
       expect(flash[:notice]).to eq("Your subscription has been updated.")

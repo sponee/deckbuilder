@@ -11,28 +11,28 @@ RSpec.describe CampaignNotesController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
-      get :index, {campaign_id: 1}
+      get :index, params: {campaign_id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #new" do
     it "returns http success" do
-      get :new, {campaign_id: 1}
+      get :new, params: {campaign_id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "POST #create" do
     it "returns http success" do
-      post :create, {campaign_id: campaign_note.campaign_id, campaign_note: note_params}
+      post :create, params: {campaign_id: campaign_note.campaign_id, campaign_note: note_params}
       expect(flash[:notice]).to eq("Your note has been created.")
     end
   end
 
   describe "PUT #update" do
     it "returns http success" do
-      put :update, {campaign_id: campaign_note.campaign_id, id: campaign_note.id, campaign_note: {name: "updated name"}}
+      put :update, params: {campaign_id: campaign_note.campaign_id, id: campaign_note.id, campaign_note: {name: "updated name"}}
 
       expect(response).to have_http_status(:redirect)
       expect(flash[:notice]).to eq("Your note has been updated.")
@@ -41,14 +41,14 @@ RSpec.describe CampaignNotesController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit, {id: campaign_note.id}
+      get :edit, params: {id: campaign_note.id}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "POST #destroy" do
     it "returns http success" do
-      delete :destroy, {id: campaign_note.id}
+      delete :destroy, params: {id: campaign_note.id}
       expect(flash[:notice]).to eq("Your note has been destroyed.")
     end
   end

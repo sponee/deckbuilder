@@ -1,8 +1,5 @@
 # Load the Rails application.
-require File.expand_path('../application', __FILE__)
-
-# Initialize the Rails application.
-CampaignManager::Application.initialize!
+require_relative 'application'
 
 ActionMailer::Base.smtp_settings = {
   :user_name => ENV['SENDGRID_USERNAME'],
@@ -13,3 +10,6 @@ ActionMailer::Base.smtp_settings = {
   :authentication => :plain,
   :enable_starttls_auto => true
 }
+
+# Initialize the Rails application.
+Rails.application.initialize!

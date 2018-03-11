@@ -28,7 +28,7 @@ class CampaignNotesController < ApplicationController
       end
     rescue => e
       flash[:error] = e.message
-      redirect_to :back
+      redirect_back(fallback_location: root_url, notice: e.message)
     end
   end
 
@@ -39,8 +39,7 @@ class CampaignNotesController < ApplicationController
         redirect_to campaign_campaign_note_path(campaign_id: @campaign_note.campaign_id, id: @campaign_note.id), notice: "Your note has been updated."
       end
     rescue => e
-      flash[:error] = e.message
-      redirect_to :back
+      redirect_back(fallback_location: root_url, notice: e.message)
     end
   end
 
@@ -61,8 +60,7 @@ class CampaignNotesController < ApplicationController
     if verified_ownership && @campaign_note.destroy
       redirect_to campaign_path(campaign_id), notice: "Your note has been destroyed."
     else
-      redirect_to :back
-      flash[:error] = "That is not your note"
+      redirect_back(fallback_location: root_url, notice: "That is not your note")
     end
   end
 
