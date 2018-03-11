@@ -20,7 +20,7 @@ class CharacterCampaignMembershipsController < ApplicationController
     @character_campaign_membership = CharacterCampaignMembership.find_by(campaign_id: params[:campaign_id], character_id: params[:character_id])
     @character_campaign_membership.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Character left the campaign.' }
+      format.html { redirect_back(fallback_location: root_url, notice: 'Character left the campaign.' }
       format.json { head :no_content }
     end
   end
