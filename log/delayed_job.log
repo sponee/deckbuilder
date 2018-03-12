@@ -1,0 +1,17 @@
+# Logfile created on 2018-02-22 04:16:04 +0000 by logger.rb/54072
+I, [2018-02-22T04:16:05.867287 #10]  INFO -- : 2018-02-22T04:16:05+0000: [Worker(host:1ca714795f22 pid:10)] Starting job worker
+I, [2018-02-22T04:16:05.902377 #10]  INFO -- : 2018-02-22T04:16:05+0000: [Worker(host:1ca714795f22 pid:10)] Error while reserving job: SQLite3::SQLException: no such table: delayed_jobs: SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2018-02-22 04:16:05.867999' AND (locked_at IS NULL OR locked_at < '2018-02-22 04:11:05.868110') OR locked_by = 'host:1ca714795f22 pid:10') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+I, [2018-02-22T04:17:12.342769 #10]  INFO -- : 2018-02-22T04:17:12+0000: [Worker(host:1ca714795f22 pid:10)] Starting job worker
+I, [2018-02-22T04:29:39.253281 #10]  INFO -- : 2018-02-22T04:29:39+0000: [Worker(host:1ca714795f22 pid:10)] Exiting...
+I, [2018-02-22T04:29:49.804429 #10]  INFO -- : 2018-02-22T04:29:49+0000: [Worker(host:1ca714795f22 pid:10)] Starting job worker
+I, [2018-02-22T17:42:05.090046 #10]  INFO -- : 2018-02-22T17:42:05+0000: [Worker(host:1ca714795f22 pid:10)] Exiting...
+I, [2018-03-11T20:41:46.138227 #9]  INFO -- : 2018-03-11T20:41:46+0000: [Worker(host:fd71373acb62 pid:9)] Starting job worker
+I, [2018-03-11T20:57:41.098308 #10]  INFO -- : 2018-03-11T20:57:41+0000: [Worker(host:0a6a339efb9d pid:10)] Starting job worker
+I, [2018-03-11T21:01:38.770833 #10]  INFO -- : 2018-03-11T21:01:38+0000: [Worker(host:0a6a339efb9d pid:10)] Starting job worker
+I, [2018-03-11T21:08:05.322685 #10]  INFO -- : 2018-03-11T21:08:05+0000: [Worker(host:0a6a339efb9d pid:10)] Exiting...
+I, [2018-03-11T21:15:12.649805 #10]  INFO -- : 2018-03-11T21:15:12+0000: [Worker(host:81eb94ced24d pid:10)] Starting job worker
+I, [2018-03-11T21:16:51.218047 #10]  INFO -- : 2018-03-11T21:16:51+0000: [Worker(host:81eb94ced24d pid:10)] Starting job worker
+I, [2018-03-12T00:37:52.113089 #10]  INFO -- : 2018-03-12T00:37:52+0000: [Worker(host:81eb94ced24d pid:10)] Starting job worker
+I, [2018-03-12T00:39:13.486308 #10]  INFO -- : 2018-03-12T00:39:13+0000: [Worker(host:81eb94ced24d pid:10)] Exiting...
+I, [2018-03-12T00:39:56.621364 #10]  INFO -- : 2018-03-12T00:39:56+0000: [Worker(host:81eb94ced24d pid:10)] Starting job worker
+I, [2018-03-12T00:42:54.839971 #10]  INFO -- : 2018-03-12T00:42:54+0000: [Worker(host:81eb94ced24d pid:10)] Starting job worker
