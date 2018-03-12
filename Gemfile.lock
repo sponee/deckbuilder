@@ -821,7 +821,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pathfinder_deck_builder (0.0.5)
-    pg (1.0.0)
+    pg (0.21.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -977,7 +977,7 @@ DEPENDENCIES
   json
   listen
   pathfinder_deck_builder
-  pg
+  pg (~> 0.21)
   pry
   puma
   rails (= 5.1)
